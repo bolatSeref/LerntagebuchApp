@@ -30,4 +30,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, NotizenActivity.class);
         startActivity(intent);
     }
+
+
+    public void imgStatistikClick (View view)
+    {
+        Intent intent = new Intent(MainActivity.this, StatistikActivity.class);
+        startActivity(intent);
+    }
+
+    public void bewertung (View view)
+    {
+        startActivity(new Intent(MainActivity.this,BewertungActivity.class));
+    }
 }

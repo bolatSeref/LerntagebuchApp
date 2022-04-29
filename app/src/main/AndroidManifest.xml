@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LerntagebuchApp">
         <activity
+            android:name=".BewertungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatistikActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotizenActivity"
             android:exported="false" />
         <activity

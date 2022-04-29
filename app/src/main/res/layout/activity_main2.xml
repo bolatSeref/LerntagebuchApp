@@ -70,10 +70,19 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageView
+            android:id="@+id/imgStatistik"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:onClick="imgStatistikClick"
+            app:srcCompat="@drawable/icon_statistic2" />
+
+        <ImageView
             android:id="@+id/imageView5"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/icon_statistics" />
+            android:onClick="bewertung"
+            app:srcCompat="@drawable/icon_done" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

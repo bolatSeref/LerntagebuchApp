@@ -31,7 +31,7 @@ public class LernzielActivity extends AppCompatActivity {
 
     public void setDataForSpinner ()
     {
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.mathe_themen, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.mathe_themen, R.layout.spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerThemen.setAdapter(adapter);
     }
