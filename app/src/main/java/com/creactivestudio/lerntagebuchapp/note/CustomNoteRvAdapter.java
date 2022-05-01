@@ -1,5 +1,6 @@
 package com.creactivestudio.lerntagebuchapp.note;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
@@ -19,11 +20,13 @@ import java.util.ArrayList;
 public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapter.MyViewHolder> {
 
     private Context context;
+    Activity activity;
     private ArrayList noteId, noteTitle, noteText;
 
 
-    public CustomNoteRvAdapter(Context context, ArrayList noteId, ArrayList noteTitle, ArrayList noteText)
+    public CustomNoteRvAdapter(Activity activity, Context context, ArrayList noteId, ArrayList noteTitle, ArrayList noteText)
     {
+        this.activity=activity;
         this.context=context;
         this.noteId=noteId;
         this.noteTitle=noteTitle;
@@ -52,7 +55,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
                 intent.putExtra("noteTitle",String.valueOf(noteTitle.get(position)));
                 intent.putExtra("noteText",String.valueOf(noteText.get(position)));
 
-                context.startActivity(intent);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }

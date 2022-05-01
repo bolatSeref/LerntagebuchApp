@@ -1,5 +1,6 @@
 package com.creactivestudio.lerntagebuchapp.note;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,7 @@ public class ViewAllNotesActivity extends AppCompatActivity {
         initViews ();
         storeDataInArrays();
 
-        customNoteRvAdapter=new CustomNoteRvAdapter(ViewAllNotesActivity.this,noteId, noteTitle, noteText);
+        customNoteRvAdapter=new CustomNoteRvAdapter(ViewAllNotesActivity.this, this, noteId, noteTitle, noteText);
         rvAllNotes.setAdapter(customNoteRvAdapter);
         rvAllNotes.setLayoutManager(new LinearLayoutManager(ViewAllNotesActivity.this));
 
@@ -45,6 +46,15 @@ public class ViewAllNotesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1)
+        {
+            recreate();
+        }
     }
 
     public void initViews()
