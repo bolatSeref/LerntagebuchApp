@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.creactivestudio.lerntagebuchapp.note.AddNoteActivity;
+import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void notizenVerfassen (View view)
     {
-        Intent intent = new Intent(MainActivity.this, NotizenActivity.class);
+      //  Intent intent = new Intent(MainActivity.this, NotizenActivity.class);
+        Intent intent = new Intent(MainActivity.this, ViewAllNotesActivity.class);
         startActivity(intent);
     }
 

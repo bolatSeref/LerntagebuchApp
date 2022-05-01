@@ -34,7 +34,7 @@
         android:id="@+id/btnStart"
         android:layout_width="376dp"
         android:layout_height="167dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/roboto_medium"
         android:onClick="btnStartClicked"
         android:text="@string/start_zu_lernen"

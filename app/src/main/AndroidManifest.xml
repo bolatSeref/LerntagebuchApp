@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LerntagebuchApp">
         <activity
+            android:label="Add Note"
+            android:name=".note.AddNoteActivity"
+            android:exported="false" />
+        <activity
+            android:label="Meine Notizen"
+            android:name=".note.ViewAllNotesActivity"
+            android:exported="false" />
+        <activity
             android:name=".BewertungActivity"
             android:exported="false" />
         <activity
