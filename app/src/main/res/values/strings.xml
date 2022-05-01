@@ -7,6 +7,7 @@
     <string name="start">Start</string>
     <string name="start_zu_lernen">Start zu Lernen</string>
     <string name="meine_notizen">Meine Notizen</string>
+    <string name="update">Update</string>
 
     <string-array name="mathe_themen">
         <item>Rechengrundlagen</item>
