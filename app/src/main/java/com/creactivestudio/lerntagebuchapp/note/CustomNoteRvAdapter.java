@@ -3,12 +3,13 @@ package com.creactivestudio.lerntagebuchapp.note;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,12 +43,18 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder,  int position) {
 
         holder.noteId.setText(String.valueOf(noteId.get(position)));
         holder.noteTitle.setText(String.valueOf(noteTitle.get(position)));
         holder.noteText.setText(String.valueOf(noteText.get(position)));
-        holder.rvItemLinearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.imgDeleteNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Your note will be deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.imgUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateNoteActivity.class);
@@ -58,6 +65,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
                 activity.startActivityForResult(intent, 1);
             }
         });
+
     }
 
     @Override
@@ -67,14 +75,17 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView noteId, noteTitle, noteText;
+        ImageView imgUpdate, imgDeleteNote;
         LinearLayout rvItemLinearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            noteId=itemView.findViewById(R.id.tvNoteId);
-            noteTitle=itemView.findViewById(R.id.tvNoteTitle);
-            noteText=itemView.findViewById(R.id.tvNoteText);
+            noteId=itemView.findViewById(R.id.tvZielId);
+            noteTitle=itemView.findViewById(R.id.tvZielThema);
+            noteText=itemView.findViewById(R.id.tvZielZeit);
             rvItemLinearLayout=itemView.findViewById(R.id.rv_item_linear_layout);
+            imgUpdate=itemView.findViewById(R.id.imgUpdateZiel);
+            imgDeleteNote=itemView.findViewById(R.id.imgDeleteZiel);
         }
     }
 }

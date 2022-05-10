@@ -1,4 +1,4 @@
-package com.creactivestudio.lerntagebuchapp.sqlite;
+package com.creactivestudio.lerntagebuchapp.lernziel;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,28 +9,29 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelperLernZiel extends SQLiteOpenHelper {
 
     private Context context;
-    private static final String DATABASE_NAME = "LernTagebuch.db";
+    private static final String DATABASE_NAME = "LernZiel.db";
     private static final int DATABASE_VERSION= 1;
-    private static final String TABLE_NAME = "notes";
+    private static final String TABLE_NAME = "themen";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_TITLE = "note_title";
-    private static final String COLUMN_NOTE_TEXT = "note_text";
+    private static final String COLUMN_THEMA_NAME = "thema_name";
+    private static final String COLUMN_ZIEL_ZEIT = "ziel_zeit";
 
-    public DatabaseHelper(@Nullable Context context) {
+    public DatabaseHelperLernZiel (@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context=context;
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query =
                 "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_TITLE + " TEXT, " +
-                        COLUMN_NOTE_TEXT + " TEXT);";
+                        COLUMN_THEMA_NAME + " TEXT, " +
+                        COLUMN_ZIEL_ZEIT + " TEXT);";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -40,19 +41,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void addNote (String noteTitle, String noteText) {
+    public void addNote (String themaName, String zielZeit) {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues cv=new ContentValues();
 
-        cv.put(COLUMN_TITLE, noteTitle);
-        cv.put(COLUMN_NOTE_TEXT, noteText);
-        
+        cv.put(COLUMN_THEMA_NAME, themaName);
+        cv.put(COLUMN_ZIEL_ZEIT, zielZeit);
+
         long result = db.insert(TABLE_NAME, null, cv);
-        if (result ==-1) 
+        if (result ==-1)
         {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }
-        else 
+        else
         {
             Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
@@ -77,8 +78,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues cv=new ContentValues();
         cv.put(COLUMN_ID, noteId);
-        cv.put(COLUMN_TITLE, noteTitle);
-        cv.put(COLUMN_NOTE_TEXT, noteText);
+        cv.put(COLUMN_THEMA_NAME, noteTitle);
+        cv.put(COLUMN_ZIEL_ZEIT, noteText);
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{noteId});
         if(result==-1)
@@ -90,6 +91,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Successfully Updated", Toast.LENGTH_SHORT).show();
         }
     }
-    
-    
+
+
 }

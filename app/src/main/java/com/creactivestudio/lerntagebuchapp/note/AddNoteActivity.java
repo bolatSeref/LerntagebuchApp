@@ -2,6 +2,7 @@ package com.creactivestudio.lerntagebuchapp.note;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,5 +38,11 @@ public class AddNoteActivity extends AppCompatActivity {
         etNoteText=findViewById(R.id.etNoteText);
         etNoteTitle=findViewById(R.id.etNoteTitle);
         btnSaveNote=findViewById(R.id.btnSaveNote);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(AddNoteActivity.this, ViewAllNotesActivity.class));
     }
 }

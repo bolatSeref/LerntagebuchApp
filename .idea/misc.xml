@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/drawable/custom_btn_radio_red.xml" value="0.132421875" />
         <entry key="app/src/main/res/drawable/spinner.xml" value="0.23125" />
         <entry key="app/src/main/res/drawable/spinner_item.xml" value="0.23125" />
-        <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.120703125" />
+        <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_bewertung.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/activity_lernziel.xml" value="0.241015625" />
         <entry key="app/src/main/res/layout/activity_lernziel_wahl.xml" value="0.23046875" />
@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/activity_view_all_notes.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/note_rv_item.xml" value="0.38283378746594005" />
         <entry key="app/src/main/res/layout/spinner.xml" value="0.2203125" />
+        <entry key="app/src/main/res/layout/ziel_rv_item.xml" value="0.2203125" />
       </map>
     </option>
   </component>
