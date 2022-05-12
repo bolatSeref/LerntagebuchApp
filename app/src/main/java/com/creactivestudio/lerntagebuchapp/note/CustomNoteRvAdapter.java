@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.creactivestudio.lerntagebuchapp.R;
+import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 
 import java.util.ArrayList;
 
@@ -52,6 +53,10 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "Your note will be deleted", Toast.LENGTH_SHORT).show();
+
+                DatabaseHelper databaseHelper=new DatabaseHelper(context);
+                databaseHelper.deleteOneRow(String.valueOf(noteId.get(position)));
+
             }
         });
         holder.imgUpdate.setOnClickListener(new View.OnClickListener() {
@@ -80,12 +85,12 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            noteId=itemView.findViewById(R.id.tvZielId);
-            noteTitle=itemView.findViewById(R.id.tvZielThema);
-            noteText=itemView.findViewById(R.id.tvZielZeit);
+            noteId=itemView.findViewById(R.id.tvGoalId);
+            noteTitle=itemView.findViewById(R.id.tvGoalTheme);
+            noteText=itemView.findViewById(R.id.tvGoalTime);
             rvItemLinearLayout=itemView.findViewById(R.id.rv_item_linear_layout);
-            imgUpdate=itemView.findViewById(R.id.imgUpdateZiel);
-            imgDeleteNote=itemView.findViewById(R.id.imgDeleteZiel);
+            imgUpdate=itemView.findViewById(R.id.imgUpdateGoal);
+            imgDeleteNote=itemView.findViewById(R.id.imgDeleteGoal);
         }
     }
 }

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LernzielWahlActivity">
+    tools:context=".SelectLearnPlan">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="131dp"
-        android:text="Wähle eine Theme "
+        android:text="@string/waehle_ein_thema"
         android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="440dp"
         android:layout_height="119dp"
         android:layout_marginTop="134dp"
-        android:onClick="btnStartClicked"
+        android:onClick="startLearning"
         android:text="@string/start_zu_lernen"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"

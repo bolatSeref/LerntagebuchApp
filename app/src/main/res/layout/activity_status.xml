@@ -69,7 +69,7 @@
         android:layout_height="141dp"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="152dp"
-        android:onClick="imgDoNotDisturbClicked"
+        android:onClick="doNotDisturb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/icon_do_not_disturb_on" />
@@ -79,7 +79,7 @@
         android:layout_width="126dp"
         android:layout_height="145dp"
         android:layout_marginEnd="36dp"
-        android:onClick="notizenVerfassen"
+        android:onClick="goToNotes"
         app:layout_constraintEnd_toStartOf="@+id/imgDoNotDisturb"
         app:layout_constraintTop_toTopOf="@+id/imgDoNotDisturb"
         app:srcCompat="@drawable/icon_notes" />

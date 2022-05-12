@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatistikActivity">
+    tools:context=".StatisticsActivity">
 
     <ImageView
-        android:id="@+id/imgStatistikBild"
+        android:id="@+id/imgStatistics"
         android:layout_width="764dp"
         android:layout_height="742dp"
         android:layout_marginTop="244dp"
@@ -22,12 +22,12 @@
         android:layout_width="186dp"
         android:layout_height="55dp"
         android:layout_marginTop="52dp"
-        android:onClick="switchWoechentlich"
+        android:onClick="switchWeeklyView"
         android:text="Wöchentlich"
         android:textColor="#2196F3"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imgStatistikBild"
-        app:layout_constraintTop_toBottomOf="@+id/imgStatistikBild" />
+        app:layout_constraintEnd_toEndOf="@+id/imgStatistics"
+        app:layout_constraintTop_toBottomOf="@+id/imgStatistics" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.creactivestudio.lerntagebuchapp.lernziel;
+package com.creactivestudio.lerntagebuchapp.goals;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelperLernZiel extends SQLiteOpenHelper {
+import com.creactivestudio.lerntagebuchapp.R;
+
+public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "LernZiel.db";
@@ -19,7 +21,7 @@ public class DatabaseHelperLernZiel extends SQLiteOpenHelper {
     private static final String COLUMN_THEMA_NAME = "thema_name";
     private static final String COLUMN_ZIEL_ZEIT = "ziel_zeit";
 
-    public DatabaseHelperLernZiel (@Nullable Context context) {
+    public DatabaseHelperLearningGoals(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context=context;
     }
@@ -57,12 +59,13 @@ public class DatabaseHelperLernZiel extends SQLiteOpenHelper {
         {
             Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public Cursor readAllData ()
     {
-        String query = "SELECT * FROM " + TABLE_NAME;
-        SQLiteDatabase db=this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME; // Bring alle Daten
+        SQLiteDatabase db=this.getReadableDatabase(); // Lesende zugriff
 
         Cursor cursor = null;
         if (db!=null)
@@ -73,22 +76,23 @@ public class DatabaseHelperLernZiel extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String noteId, String noteTitle, String noteText)
+
+    public void updateData(String goalId, String goalTheme, String goalTime)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues cv=new ContentValues();
-        cv.put(COLUMN_ID, noteId);
-        cv.put(COLUMN_THEMA_NAME, noteTitle);
-        cv.put(COLUMN_ZIEL_ZEIT, noteText);
+        cv.put(COLUMN_ID, goalId);
+        cv.put(COLUMN_THEMA_NAME, goalTheme);
+        cv.put(COLUMN_ZIEL_ZEIT, goalTime);
 
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{noteId});
-        if(result==-1)
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{goalId});
+        if(result==-1) // Wenn ein Fehler aufgetreten ist
         {
-            Toast.makeText(context, "Failed Updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.update_failed), Toast.LENGTH_SHORT).show();
         }
-        else
+        else  // Wenn kein Fehler gibt und Problemlos aktualisiert ist
         {
-            Toast.makeText(context, "Successfully Updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.successfully_updated), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -11,6 +11,7 @@
         android:theme="@style/Theme.LerntagebuchApp">
         <activity
             android:name=".note.UpdateNoteActivity"
+            android:parentActivityName=".note.ViewAllNotesActivity"
             android:exported="false" />
         <activity
             android:name=".note.AddNoteActivity"
@@ -22,10 +23,10 @@
             android:exported="false"
             android:label="Meine Notizen" />
         <activity
-            android:name=".BewertungActivity"
+            android:name=".EvaluateYourSelfActivity"
             android:exported="false" />
         <activity
-            android:name=".StatistikActivity"
+            android:name=".StatisticsActivity"
             android:exported="false" />
         <activity
             android:name=".NotizenActivity"
@@ -34,16 +35,16 @@
             android:name=".StatusActivity"
             android:exported="false" />
         <activity
-            android:name=".LernzielWahlActivity"
+            android:name=".SelectLearnPlan"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LernzielActivity"
+            android:name=".CreateStudyPlan"
             android:exported="false" />
         <activity
-            android:name=".FirstActivity"
+            android:name=".WelcomeScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

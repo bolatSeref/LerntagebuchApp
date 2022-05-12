@@ -1,5 +1,7 @@
 package com.creactivestudio.lerntagebuchapp.note;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -22,9 +24,17 @@ public class UpdateNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_note);
 
+
+
         initViews();
 
+
+
         getAndSetIntentData();
+
+        // to change Actionbar name
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setTitle("Update: " + noteTitle);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +52,6 @@ public class UpdateNoteActivity extends AppCompatActivity {
         etNoteTextUpdate=findViewById(R.id.etNoteTextUpdate);
         etNoteTitleUpdate=findViewById(R.id.etNoteTitleUpdate);
         btnUpdate=findViewById(R.id.btnUpdateNote);
-
     }
 
     public void getAndSetIntentData() {
@@ -54,10 +63,16 @@ public class UpdateNoteActivity extends AppCompatActivity {
 
             etNoteTitleUpdate.setText(noteTitle);
             etNoteTextUpdate.setText(noteText);
-         }
+        }
         else
         {
             Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void confirmDialog ()
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+
     }
 }

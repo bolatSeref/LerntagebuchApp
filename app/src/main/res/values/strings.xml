@@ -8,8 +8,22 @@
     <string name="start_zu_lernen">Start zu Lernen</string>
     <string name="meine_notizen">Meine Notizen</string>
     <string name="update">Update</string>
+    <string name="no_data">No Data</string>
+    <string name="wie_lange_willst_du_lernen">Wie lange willst du lernen?</string>
+    <string name="minuten">Minuten?</string>
+    <string name="thema_hinzufügen">Thema Hinzufügen</string>
+    <string name="alle_speichern">Alle Speichern</string>
+    <string name="einstellungen">Einstellungen</string>
+    <string name="notizen">Notizen</string>
+    <string name="statistiken">Statistiken</string>
+    <string name="selbst_einschaetzung">Selbst einschätzung</string>
+    <string name="update_failed">Update Failed</string>
+    <string name="successfully_updated">Successfully Updated</string>
+    <string name="waehle_ein_thema">Wähle ein Thema</string>
+    <string name="minute">Minuten</string>
 
     <string-array name="mathe_themen">
+        <item>Wähle ein Thema aus!</item>
         <item>Rechengrundlagen</item>
         <item>Polynome und rationale Funktionen</item>
         <item>Elementare Funktionen</item>

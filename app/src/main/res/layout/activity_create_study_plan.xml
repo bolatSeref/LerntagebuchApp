@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LernzielActivity">
+    tools:context=".CreateStudyPlan">
 
     <TextView
         android:id="@+id/textView"
@@ -37,7 +37,7 @@
             android:layout_height="69dp"
             android:layout_marginStart="84dp"
             android:ems="10"
-            android:hint="Wie lange willst du lernen?"
+            android:hint="@string/minuten"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
             android:id="@+id/imgAddZiel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="addZiel"
+            android:onClick="addGoal"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
@@ -61,8 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/teal_200"
-            android:onClick="addZiel"
-            android:text="Thema Hinzufügen"
+            android:onClick="addGoal"
+            android:text="@string/thema_hinzufügen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnSpeichern"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,8 +74,8 @@
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/teal_700"
             android:fontFamily="@font/roboto_medium"
-            android:onClick="btnSpeichernClicked"
-            android:text="Alle Speichern"
+            android:onClick="saveGoal"
+            android:text="@string/alle_speichern"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

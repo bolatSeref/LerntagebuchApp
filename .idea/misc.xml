@@ -10,7 +10,9 @@
         <entry key="app/src/main/res/drawable/spinner_item.xml" value="0.23125" />
         <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_bewertung.xml" value="0.2203125" />
-        <entry key="app/src/main/res/layout/activity_lernziel.xml" value="0.241015625" />
+        <entry key="app/src/main/res/layout/activity_create_study_plan.xml" value="0.26476510065222697" />
+        <entry key="app/src/main/res/layout/activity_evaluate_your_self.xml" value="0.241015625" />
+        <entry key="app/src/main/res/layout/activity_lernziel.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_lernziel_wahl.xml" value="0.23046875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23046875" />
@@ -19,6 +21,7 @@
         <entry key="app/src/main/res/layout/activity_status.xml" value="0.23046875" />
         <entry key="app/src/main/res/layout/activity_update_note.xml" value="0.229375" />
         <entry key="app/src/main/res/layout/activity_view_all_notes.xml" value="0.2203125" />
+        <entry key="app/src/main/res/layout/goal_rv_item_layout.xml" value="0.241015625" />
         <entry key="app/src/main/res/layout/note_rv_item.xml" value="0.38283378746594005" />
         <entry key="app/src/main/res/layout/spinner.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/ziel_rv_item.xml" value="0.2203125" />

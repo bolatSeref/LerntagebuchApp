@@ -8,34 +8,46 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class LernzielWahlActivity extends AppCompatActivity {
+public class SelectLearnPlan extends AppCompatActivity {
 
-    Spinner spinnerGewaelteThemen;
+    Spinner spinnerThemes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lernziel_wahl);
+        setContentView(R.layout.activity_select_learn_plan);
 
+        // Initialition von Views
         initViews();
 
+        // Stelle data zu Spinner ein.
         setSpinner();
     }
 
+    /**
+     * Initialition von Views
+     */
     public void initViews ()
     {
-        spinnerGewaelteThemen=findViewById(R.id.spinnerGewaelteThemen);
+        spinnerThemes =findViewById(R.id.spinnerGewaelteThemen);
     }
 
+    /**
+     * Stelle data zu Spinner ein. Die Datas kommt von XML Datei.
+     */
     public void setSpinner()
     {
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.mathe_themen, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerGewaelteThemen.setAdapter(adapter);
+        spinnerThemes.setAdapter(adapter);
     }
 
-    public void btnStartClicked (View view)
+    /**
+     * Nach dem auswählen das Thema, fängt der Benutzer zu lernen.
+     * @param view
+     */
+    public void startLearning (View view)
     {
-        Intent intent=new Intent(LernzielWahlActivity.this, StatusActivity.class);
+        Intent intent=new Intent(SelectLearnPlan.this, StatusActivity.class);
         startActivity(intent);
     }
 }

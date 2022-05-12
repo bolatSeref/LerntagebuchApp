@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstActivity">
+    tools:context=".WelcomeScreen">
 
     <Button
         android:id="@+id/btnLernplannung"
@@ -12,7 +12,7 @@
         android:layout_height="162dp"
         android:layout_marginBottom="340dp"
         android:fontFamily="@font/roboto_medium"
-        android:onClick="lernPlannungClicked"
+        android:onClick="createStudyPlan"
         android:text="@string/erstelle_meinen_lernplan"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"

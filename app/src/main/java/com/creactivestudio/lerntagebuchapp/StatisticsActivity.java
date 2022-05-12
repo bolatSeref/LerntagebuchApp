@@ -6,32 +6,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class StatistikActivity extends AppCompatActivity {
+public class StatisticsActivity extends AppCompatActivity {
 
-    ImageView imgStatistikBild;
+    ImageView imgStatistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistik);
+        setContentView(R.layout.activity_statistics);
 
         initViews();
     }
 
     public void initViews()
     {
-        imgStatistikBild=findViewById(R.id.imgStatistikBild);
+        imgStatistics =findViewById(R.id.imgStatistics);
 
     }
 
-    public void switchWoechentlich (View view) {
+    public void switchWeeklyView (View view) {
         if (view.createAccessibilityNodeInfo().isChecked())
         {
-            imgStatistikBild.setImageResource(R.drawable.statistik2);
+            imgStatistics.setImageResource(R.drawable.statistik2);
         }
         else
         {
-            imgStatistikBild.setImageResource(R.drawable.statistik);
+            imgStatistics.setImageResource(R.drawable.statistik);
         }
     }
 

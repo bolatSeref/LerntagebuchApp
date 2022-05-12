@@ -90,6 +90,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Successfully Updated", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    /**
+     * To delete one row from database
+     * @param row_id
+     */
+    public void deleteOneRow (String row_id)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        if (result==-1) // An error
+        {
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+        }
+
+    }
     
     
 }

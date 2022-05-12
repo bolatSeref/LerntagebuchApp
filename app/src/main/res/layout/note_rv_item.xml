@@ -26,7 +26,7 @@
             android:padding="30sp">
 
             <TextView
-                android:id="@+id/tvZielId"
+                android:id="@+id/tvGoalId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvZielThema"
+                android:id="@+id/tvGoalTheme"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -47,40 +47,40 @@
                 android:textColor="#1C1D1E"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/imgUpdateZiel"
-                app:layout_constraintStart_toEndOf="@+id/tvZielId"
-                app:layout_constraintTop_toTopOf="@+id/tvZielId" />
+                app:layout_constraintEnd_toStartOf="@+id/imgUpdateGoal"
+                app:layout_constraintStart_toEndOf="@+id/tvGoalId"
+                app:layout_constraintTop_toTopOf="@+id/tvGoalId" />
 
             <TextView
-                android:id="@+id/tvZielZeit"
+                android:id="@+id/tvGoalTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="note text"
-                app:layout_constraintEnd_toStartOf="@+id/imgUpdateZiel"
-                app:layout_constraintStart_toStartOf="@+id/tvZielThema"
-                app:layout_constraintTop_toBottomOf="@+id/tvZielThema" />
+                app:layout_constraintEnd_toStartOf="@+id/imgUpdateGoal"
+                app:layout_constraintStart_toStartOf="@+id/tvGoalTheme"
+                app:layout_constraintTop_toBottomOf="@+id/tvGoalTheme" />
 
             <ImageView
-                android:id="@+id/imgUpdateZiel"
+                android:id="@+id/imgUpdateGoal"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgDeleteZiel"
+                app:layout_constraintEnd_toStartOf="@+id/imgDeleteGoal"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.474"
                 app:srcCompat="@drawable/icon_write" />
 
             <ImageView
-                android:id="@+id/imgDeleteZiel"
+                android:id="@+id/imgDeleteGoal"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgUpdateZiel"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUpdateGoal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imgUpdateZiel"
+                app:layout_constraintTop_toTopOf="@+id/imgUpdateGoal"
                 app:srcCompat="@drawable/icon_delete" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

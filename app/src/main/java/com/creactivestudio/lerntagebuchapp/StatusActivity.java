@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
+
 public class StatusActivity extends AppCompatActivity {
 
+
     long startTime=0;
-    TextView tvTimer;
+    TextView tvTimer; // Timer ist angezeigt.
 
     Handler timerHandler=new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -34,42 +37,68 @@ public class StatusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
-        initViews();
 
-        startTime=System.currentTimeMillis();
+        initViews(); // Initialition von View-Objekts
+
+        startTime=System.currentTimeMillis(); //  Beginnt mit System Time
         timerHandler.postDelayed(timerRunnable,0);
 
     }
 
+    /**
+     * Benutzer kann den Timer stoppen.
+     * @param view
+     */
     public void stopTimer (View view)
     {
         timerHandler.removeCallbacks(timerRunnable);
     }
 
+    /**
+     * Benutzer startet den Timer.
+     * @param view
+     */
     public void startTimer (View view)
     {
         startTime=System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable,0);
     }
 
-    public void pausiereTimer (View view)
+    /**
+     * Benutzer kann der Timer pausieren:
+     * @param view
+     */
+    public void pauseTimer(View view)
     {
 
     }
 
+    /**
+     * Initialition von Views
+     */
     public void initViews()
     {
         tvTimer=findViewById(R.id.tvTimer);
     }
 
-    public void imgDoNotDisturbClicked (View view)
-    {
 
+    /**
+     * Der benutzer kann Nicht Stören Modus aktivieren und deaktivieren.
+     * @param view
+     */
+    public void doNotDisturb(View view)
+    {
+// TODO: 12.05.22
     }
 
-    public void notizenVerfassen (View view)
+    /**
+     * Der Benutzer navigiert sich zu View All Notes Activity, da kann er besthende Notizen verwalten und neue Notizen verfassen.
+     * @param view
+     */
+
+    public void addNote (View view)
     {
-        Intent intent =new Intent(StatusActivity.this, NotizenActivity.class);
+        Intent intent =new Intent(StatusActivity.this, ViewAllNotesActivity.class);
         startActivity(intent);
     }
 
