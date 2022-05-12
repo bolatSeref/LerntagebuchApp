@@ -21,9 +21,13 @@
     <string name="successfully_updated">Successfully Updated</string>
     <string name="waehle_ein_thema">Wähle ein Thema</string>
     <string name="minute">Minuten</string>
+    <string name="bitte_waehle_ein_thema">Bitte wähle ein Thema!</string>
+    <string name="dein_ziel_ist_geloescht">Dein Ziel ist gelöscht!</string>
+    <string name="fuelle_die_zeit_eingabe_ein">Fülle die Zeit Eingabe ein!</string>
+    <string name="erstelle_deinen_lernplan">Erstelle deinen Lernplan</string>
 
     <string-array name="mathe_themen">
-        <item>Wähle ein Thema aus!</item>
+        <item>Wähle Themen um dein Lernziel zu bestimmen! </item>
         <item>Rechengrundlagen</item>
         <item>Polynome und rationale Funktionen</item>
         <item>Elementare Funktionen</item>

@@ -54,6 +54,7 @@ public class GoalsRecyclerViewAdapter extends RecyclerView.Adapter<GoalsRecycler
             public void onClick(View view) {
                 // TODO: 12.05.22 noch nicht fertig
                 Toast.makeText(context, "Update Clicked", Toast.LENGTH_SHORT).show();
+                //notifyDataSetChanged();
             }
         });
 
@@ -61,7 +62,11 @@ public class GoalsRecyclerViewAdapter extends RecyclerView.Adapter<GoalsRecycler
             @Override
             public void onClick(View view) {
                 // TODO: 12.05.22 noch nicht fertig
-                Toast.makeText(context, "Delete Clicked", Toast.LENGTH_SHORT).show();
+                DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(context);
+                databaseHelperLearningGoals.deleteOneRow(String.valueOf(goalId.get(position)));
+                Toast.makeText(context, context.getString(R.string.dein_ziel_ist_geloescht) , Toast.LENGTH_SHORT).show();
+                //notifyDataSetChanged();
+                activity.recreate(); // aktualiesiere activity
             }
         });
     }

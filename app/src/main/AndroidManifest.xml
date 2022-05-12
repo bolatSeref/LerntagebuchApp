@@ -42,7 +42,9 @@
             android:exported="false" />
         <activity
             android:name=".CreateStudyPlan"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/erstelle_deinen_lernplan"
+            android:parentActivityName=".WelcomeScreen"/>
         <activity
             android:name=".WelcomeScreen"
             android:exported="true">

@@ -96,5 +96,41 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         }
     }
 
+    public void deleteOneRow (String row_id)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        if (result==-1) // An error
+        {
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    /**
+     * Gib gesamte Lern Ziel in Minuten zurück.
+     * @return
+     */
+    public int getLearningGoalTime ()
+    {
+        String query = "SELECT SUM(" + DatabaseHelperLearningGoals.COLUMN_ZIEL_ZEIT + ") as Total FROM " + TABLE_NAME; // Bring alle Daten
+        SQLiteDatabase db=this.getReadableDatabase(); // Lesende zugriff
+        int total=0;
+        Cursor cursor = null;
+        if (db!=null)
+        {
+            cursor=db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                total = cursor.getInt(cursor.getColumnIndex("Total"));
+            }
+        }
+
+        return total;
+    }
+
 
 }

@@ -8,7 +8,7 @@
     android:singleLine="true"
     android:ellipsize="marquee"
     android:textAlignment="inherit"
-    android:textSize="70sp"
+    android:textSize="35sp"
     android:lineHeight="25sp"
     android:textColor="#FF0000"
     android:padding="5dp"
