@@ -76,6 +76,21 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void getOneRow (String goalId)
+    {
+        String query="SELECT * FROM " + TABLE_NAME + " WHERE _id=goalId ";
+        SQLiteDatabase db=this.getReadableDatabase();
+
+
+        Cursor cursor=null;
+        if(db!=null)
+        {
+            cursor=db.rawQuery(query, null);
+        }
+
+
+    }
+
 
     public void updateData(String goalId, String goalTheme, String goalTime)
     {
@@ -110,6 +125,8 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         }
 
     }
+
+
 
     /**
      * Gib gesamte Lern Ziel in Minuten zurück.

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
@@ -42,6 +43,11 @@ public class StatusActivity extends AppCompatActivity {
 
         startTime=System.currentTimeMillis(); //  Beginnt mit System Time
         timerHandler.postDelayed(timerRunnable,0);
+
+
+        Intent intent=getIntent();
+        String id=intent.getStringExtra("goalId");
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
 
     }
 

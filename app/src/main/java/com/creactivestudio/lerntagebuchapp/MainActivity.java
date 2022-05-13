@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 /**
@@ -14,10 +17,21 @@ import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
  */
 public class MainActivity extends AppCompatActivity {
 
+    TextView tvWeeklyGoalTime, tvLearnStatus;
+    ProgressBar progressBarWeeklyGoals;
+    int totalGoalTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+
+        initViews(); // initializiere Views
+        setTvWeeklyGoalTime();
+        setTvLearnStatus();
+        // TODO: 13.05.22 progress wert wird vom Datenbank abgeholt
+        setProgressBarWeeklyGoals(totalGoalTime, totalGoalTime/3);
     }
 
     /**
@@ -31,6 +45,37 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * initializiere Views
+     */
+    public void initViews()
+    {
+        tvWeeklyGoalTime=findViewById(R.id.tvWeeklyGoalTime);
+        progressBarWeeklyGoals=findViewById(R.id.progressBarWeeklyGoal);
+        tvLearnStatus=findViewById(R.id.tvLearnStatus);
+    }
+
+    public void setProgressBarWeeklyGoals (int maxValue, int progressValue)
+    {
+        progressBarWeeklyGoals.setMax(maxValue);
+        progressBarWeeklyGoals.setProgress(progressValue);
+        progressBarWeeklyGoals.setScaleY(5f);
+    }
+
+    /**
+     *
+     */
+    public void setTvWeeklyGoalTime ()
+    {
+        DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);
+        totalGoalTime=databaseHelperLearningGoals.getLearningGoalTime();
+        tvWeeklyGoalTime.setText("Dein Ziel ist " + totalGoalTime + " Minuten");
+    }
+
+    public void setTvLearnStatus ()
+    {
+        tvLearnStatus.setText("Du hast " + "20" + " Minuten gelernt.");
+    }
 
     /**
      * Der Benutzer navigiert sich zu View All Notes Activity, da kann er besthende Notizen verwalten und neue Notizen verfassen.
