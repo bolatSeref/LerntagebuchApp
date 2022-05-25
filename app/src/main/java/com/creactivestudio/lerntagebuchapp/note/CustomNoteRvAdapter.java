@@ -57,6 +57,8 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
                 DatabaseHelper databaseHelper=new DatabaseHelper(context);
                 databaseHelper.deleteOneRow(String.valueOf(noteId.get(position)));
 
+                activity.recreate();
+
             }
         });
         holder.imgUpdate.setOnClickListener(new View.OnClickListener() {

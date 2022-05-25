@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.media.MediaCodecInfo;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -85,6 +86,7 @@ public class CreateStudyPlan extends AppCompatActivity {
         tvTotalGoalTime.setText("Gesamte Zeit:  " + totalTime +" Minuten");
     }
 
+
     /**
      * Wir speichern alle Daten von Sqlite zu oben beschriebene Array Lists ein.
      */
@@ -159,7 +161,16 @@ public class CreateStudyPlan extends AppCompatActivity {
      */
     public void saveGoal (View view)
     {
-        Intent intent = new Intent(CreateStudyPlan.this, MainActivity.class);
-        startActivity(intent);
+        DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);// Instanzierung DatabaseHelper-Klasse
+        if(databaseHelperLearningGoals.isThemenSaved()) // kontrolliere ob der Benutzer thema hinzugefügt hat wenn ja dann intent ist möglich
+        {
+            Intent intent = new Intent(CreateStudyPlan.this, MainActivity.class);
+            startActivity(intent);
+        }
+        else // wenn der Benutzer kein Thema hinzugefügt hat dann gib eine Nachricht
+        {
+            Toast.makeText(this, getString(R.string.please_save_theme), Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

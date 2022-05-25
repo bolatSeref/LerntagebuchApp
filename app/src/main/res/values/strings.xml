@@ -25,6 +25,9 @@
     <string name="dein_ziel_ist_geloescht">Dein Ziel ist gelöscht!</string>
     <string name="fuelle_die_zeit_eingabe_ein">Fülle die Zeit Eingabe ein!</string>
     <string name="erstelle_deinen_lernplan">Erstelle deinen Lernplan</string>
+    <string name="an_error_is_occured">An error is occured</string>
+    <string name="please_save_theme">Please save theme</string>
+    <string name="bitte_vollständige_dein_notizen">Bitte vollständige dein Notizen</string>
 
     <string-array name="mathe_themen">
         <item>Wähle Themen um dein Lernziel zu bestimmen! </item>

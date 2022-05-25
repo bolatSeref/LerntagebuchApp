@@ -149,5 +149,31 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         return total;
     }
 
+    /**
+     * Kontrolliere ob der Benutzer mindestens einen Thema hinzugefügt hat.
+     * @return  Wenn ja return true wenn nicht return false
+     */
+    public boolean isThemenSaved ()
+    {
+        boolean isThemenSaved=false;
+
+        String query="SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase database=this.getReadableDatabase();
+        Cursor cursor=null;
+        if(database!=null)
+        {
+            cursor=database.rawQuery(query,null);
+            if(cursor.moveToNext()) isThemenSaved=true;
+            else isThemenSaved=false;
+        }
+        else
+        {
+            Toast.makeText(context,context.getString(R.string.an_error_is_occured), Toast.LENGTH_SHORT).show();
+
+        }
+
+        return isThemenSaved;
+    }
+
 
 }

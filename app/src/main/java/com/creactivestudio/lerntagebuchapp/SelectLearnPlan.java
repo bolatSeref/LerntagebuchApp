@@ -28,8 +28,8 @@ public class SelectLearnPlan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_learn_plan);
 
-        // Initialition von Views
-        initViews();
+
+        initViews();// Initialition von Views
 
         storeDataInArrays(); // Wir speichern alle Daten von Sqlite zu oben besreibene Array Lists ein.
         rvAllThemes.setAdapter(allThemesRecyclerViewAdapter);
