@@ -50,4 +50,21 @@
         <item>Mechanik</item>
         <item>Optik</item>
     </string-array>
+    <string-array name="mathe_themen_without_title">
+        <item>Rechengrundlagen</item>
+        <item>Polynome und rationale Funktionen</item>
+        <item>Elementare Funktionen</item>
+        <item>Trigonometrische Funktionen</item>
+        <item>Beweisverfahren und mathematische Ausdrücke</item>
+        <item>Abbildungen</item>
+        <item>Charakterisierung der reellen Zahlen</item>
+        <item>Fongen und deren Konvergenz</item>
+        <item>Stetigkeit</item>
+        <item>Differenzierbarkeit</item>
+        <item>Integrierbarkeit</item>
+        <item>Integrationstechniken</item>
+        <item>Approximation</item>
+        <item>Mechanik</item>
+        <item>Optik</item>
+    </string-array>
 </resources>

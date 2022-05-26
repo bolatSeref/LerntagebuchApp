@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.creactivestudio.lerntagebuchapp.evaluate_your_self.EvaluateYourSelfActivity;
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
