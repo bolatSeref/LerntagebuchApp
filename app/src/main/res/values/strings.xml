@@ -28,6 +28,9 @@
     <string name="an_error_is_occured">An error is occured</string>
     <string name="please_save_theme">Please save theme</string>
     <string name="bitte_vollständige_dein_notizen">Bitte vollständige dein Notizen</string>
+    <string name="nicht_stoeren_modus_an">Nicht stören Modus an!</string>
+    <string name="nicht_stoeren_modus_aus">Nicht stören modus ist ausgeschaltet!</string>
+    <string name="du_hast_dein_ziel_erreicht">Du hast dein Ziel erreicht :)</string>
 
     <string-array name="mathe_themen">
         <item>Wähle Themen um dein Lernziel zu bestimmen! </item>

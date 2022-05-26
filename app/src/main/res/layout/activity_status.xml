@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StatusActivity">
@@ -32,7 +33,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:onClick="startTimer"
+            android:onClick="resumeTimer"
             app:srcCompat="@drawable/icon_play" />
 
         <ImageView
@@ -40,6 +41,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_weight="1"
+            android:onClick="pauseTimer"
             app:srcCompat="@drawable/icon_pause" />
 
         <ImageView
@@ -64,24 +66,35 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
     <ImageView
-        android:id="@+id/imgDoNotDisturb"
+        android:id="@+id/imgDoNotDisturbOff"
         android:layout_width="94dp"
         android:layout_height="141dp"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="152dp"
-        android:onClick="doNotDisturb"
+        android:onClick="doNotDisturbOff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/icon_do_not_disturb_on" />
+        app:srcCompat="@drawable/icon_do_not_disturb_off" />
 
     <ImageView
         android:id="@+id/imgNotizen"
         android:layout_width="126dp"
         android:layout_height="145dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:onClick="goToNotes"
-        app:layout_constraintEnd_toStartOf="@+id/imgDoNotDisturb"
-        app:layout_constraintTop_toTopOf="@+id/imgDoNotDisturb"
+        app:layout_constraintEnd_toStartOf="@+id/imgDoNotDisturbOn"
+        app:layout_constraintTop_toTopOf="@+id/imgDoNotDisturbOff"
         app:srcCompat="@drawable/icon_notes" />
+
+    <ImageView
+        android:id="@+id/imgDoNotDisturbOn"
+        android:layout_width="94dp"
+        android:layout_height="141dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="doNotDisturbOn"
+        app:layout_constraintEnd_toStartOf="@+id/imgDoNotDisturbOff"
+        app:layout_constraintTop_toTopOf="@+id/imgDoNotDisturbOff"
+        app:srcCompat="@drawable/icon_do_not_disturb_on" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

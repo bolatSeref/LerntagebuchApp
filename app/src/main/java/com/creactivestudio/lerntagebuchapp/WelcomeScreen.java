@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
+
 /**
  * Diese Activity ist die erste Activity, die der Benutzer sieht.
  */
@@ -15,6 +17,16 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        // Wenn der Benutzer sein Ziel gespeichert hat dann beginnt der App vom Main Activity,
+        // wenn nicht dann erste Activity der App ist WelcomeScreen activity
+        DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);
+        if(databaseHelperLearningGoals.isThemenSaved())
+        {
+            startActivity(new Intent(WelcomeScreen.this, MainActivity.class));
+        }
+
+
     }
 
 

@@ -49,7 +49,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, StatusActivity.class);
-                intent.putExtra("goalId", String.valueOf(goalId.get(position)));
+                intent.putExtra("goalTime", String.valueOf(goalTime.get(position)));
                 context.startActivity(intent);
             }
         });

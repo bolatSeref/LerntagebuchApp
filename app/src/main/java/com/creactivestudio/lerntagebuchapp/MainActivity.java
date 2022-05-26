@@ -46,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Der Benutzer kann sich CreateStudyPlan Activity navigieren, um sein Lernplan ändern zu können.
+     * @param view
+     */
+    public void settings (View view)
+    {
+        startActivity(new Intent(MainActivity.this, CreateStudyPlan.class));
+    }
+
+    /**
      * initializiere Views
      */
     public void initViews()

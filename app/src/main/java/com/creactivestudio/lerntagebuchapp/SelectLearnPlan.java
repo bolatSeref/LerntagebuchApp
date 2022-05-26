@@ -83,9 +83,12 @@ public class SelectLearnPlan extends AppCompatActivity {
      * Nach dem auswählen das Thema, fängt der Benutzer zu lernen.
      * @param view
      */
+    /*
     public void startLearning (View view)
     {
         Intent intent=new Intent(SelectLearnPlan.this, StatusActivity.class);
         startActivity(intent);
     }
+    */
+
 }

@@ -44,6 +44,7 @@
             android:id="@+id/imageView3"
             android:layout_width="133dp"
             android:layout_height="120dp"
+            android:onClick="settings"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
