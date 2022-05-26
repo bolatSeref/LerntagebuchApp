@@ -27,7 +27,7 @@ public class EvaluateYourSelfActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluate_your_self);
 
-        initViews();
+        init();
 
         setThemesArrayFromXML();
 
@@ -39,16 +39,17 @@ public class EvaluateYourSelfActivity extends AppCompatActivity {
 
     }
 
-    public void initViews() {
+    public void init() {
         rvEvaluation = findViewById(R.id.rvEvaluation);
         themeList = new ArrayList();
         testList=new ArrayList<>();
     }
 
+    /**
+     *
+     */
     public void setThemesArrayFromXML()
     {
        testList= Arrays.asList(getResources().getStringArray(R.array.mathe_themen_without_title));
-     //   themeList.add(0, "test");
-      //  themeList.add(1, "test2");
     }
 }

@@ -5,7 +5,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +42,16 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
     @Override
     public void onBindViewHolder(@NonNull EvaluateViewHolder holder, int position) {
         holder.tvThemeTitle.setText(String.valueOf(themeList.get(position)));
+        holder.radioGroupEvaluation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                Toast.makeText(context,String.valueOf(i), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        holder.radioGroupEvaluation.getCheckedRadioButtonId();
+
     }
 
     @Override
@@ -49,11 +62,19 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
     public class EvaluateViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvThemeTitle;
+        RadioButton radioButtonRed, radioButtonYellow, radioButtonGreen;
+        RadioGroup radioGroupEvaluation;
 
         public EvaluateViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvThemeTitle=itemView.findViewById(R.id.tvThemeTitle);
+            radioButtonGreen=itemView.findViewById(R.id.radioButtonGreen);
+            radioButtonYellow=itemView.findViewById(R.id.radioButtonYellow);
+            radioButtonRed=itemView.findViewById(R.id.radioButtonRed);
+            radioGroupEvaluation=itemView.findViewById(R.id.radioGroup);
+
+
         }
     }
 
