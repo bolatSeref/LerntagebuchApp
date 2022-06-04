@@ -34,6 +34,12 @@
     <string name="check_my_note">Check my note!</string>
     <string name="share_via">Share via ...</string>
     <string name="your_note_is_copied_to_clipboard">Your note is copied to clipboard!</string>
+    <string name="du_hast_noch_nicht_dein_lernplan_erstellt">Du hast noch nicht dein Lernplan erstellt!</string>
+    <string name="added_successfully">Added Successfully</string>
+    <string name="failed">Failed</string>
+    <string name="failed_to_delete">Failed to delete your note!</string>
+    <string name="deleted_successfully">Deleted successfully!</string>
+    <string name="your_note_is_deleted">Your note is deleted successfully!</string>
 
     <string-array name="mathe_themen">
         <item>Wähle Themen um dein Lernziel zu bestimmen! </item>

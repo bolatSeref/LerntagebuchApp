@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.creactivestudio.lerntagebuchapp.MainActivity;
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
 import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,7 +23,7 @@ public class ViewAllNotesActivity extends AppCompatActivity {
     private CustomNoteRvAdapter customNoteRvAdapter;
     RecyclerView rvAllNotes;
     FloatingActionButton btnAddNote;
-
+    Helper helper;
     DatabaseHelper databaseHelper;
     ArrayList<String> noteId, noteTitle, noteText;
 
@@ -32,7 +32,7 @@ public class ViewAllNotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_notes);
 
-        initViews ();
+        init();
         storeDataInArrays();
 
         customNoteRvAdapter=new CustomNoteRvAdapter(ViewAllNotesActivity.this, this, noteId, noteTitle, noteText);
@@ -57,8 +57,9 @@ public class ViewAllNotesActivity extends AppCompatActivity {
         }
     }
 
-    public void initViews()
+    public void init()
     {
+        helper=new Helper(this);
         rvAllNotes=findViewById(R.id.rvNotes);
         btnAddNote=findViewById(R.id.btnAddNote);
         databaseHelper=new DatabaseHelper(ViewAllNotesActivity.this);
@@ -75,7 +76,7 @@ public class ViewAllNotesActivity extends AppCompatActivity {
         Cursor cursor= databaseHelper.readAllData();
         if(cursor.getCount()==0)
         {
-            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+            helper.showToast(getString(R.string.no_data), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else
         {

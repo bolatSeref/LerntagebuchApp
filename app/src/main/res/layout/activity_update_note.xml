@@ -4,46 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_general"
     tools:context=".note.UpdateNoteActivity">
 
     <EditText
         android:id="@+id/etNoteTitleUpdate"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="168dp"
         android:layout_marginEnd="100dp"
+        android:background="@drawable/box_entries"
+        android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etNoteTextUpdate"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="86dp"
         android:layout_marginEnd="100dp"
+        android:background="@drawable/box_message"
+        android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNoteTitleUpdate" />
 
-    <Button
-        android:id="@+id/btnUpdateNote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="177dp"
-        android:layout_marginEnd="150dp"
-        android:text="@string/update"
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="485dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="100dp"
+        android:onClick="updateNote"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNoteTextUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/etNoteTextUpdate"
+        app:srcCompat="@drawable/start_btn" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update"
+        android:textColor="#fff"
+        android:textSize="54sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="@+id/imageView19"
+        app:layout_constraintStart_toStartOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/imageView19" />
 </androidx.constraintlayout.widget.ConstraintLayout>

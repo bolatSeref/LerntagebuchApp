@@ -5,34 +5,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
 import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
-
-import java.util.Locale;
 
 public class AddNoteActivity extends AppCompatActivity {
 
     EditText etNoteTitle, etNoteText;
-    Button btnSaveNote;
-    @Override
+    Helper helper;
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
 
-        initViews(); 
+
+        init(); // Initialition
         
     }
 
-    public void initViews()
+    public void init()
     {
         etNoteText=findViewById(R.id.etNoteText);
         etNoteTitle=findViewById(R.id.etNoteTitle);
-        btnSaveNote=findViewById(R.id.btnSaveNote);
-    }
+        helper=new Helper(this);
+     }
 
     /**
      * Zunäcst kontrolliere EditTexts wenn den Benutzer Notizen eingeschrieben ist dann
@@ -52,7 +51,7 @@ public class AddNoteActivity extends AppCompatActivity {
         }
         else // wenn nicht gib eine Nachricht
         {
-            Toast.makeText(this, getText(R.string.bitte_vollständige_dein_notizen), Toast.LENGTH_SHORT).show();
+            helper.showToast(getString(R.string.bitte_vollständige_dein_notizen), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
 
         

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
 import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapter.MyViewHolder> {
 
     private Context context;
+    Helper helper;
     Activity activity;
     private ArrayList noteId, noteTitle, noteText;
 
@@ -35,6 +37,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
         this.noteId=noteId;
         this.noteTitle=noteTitle;
         this.noteText=noteText;
+        helper=new Helper(context);
     }
 
     @NonNull
@@ -58,7 +61,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
                 ClipData clip = ClipData.newPlainText("label", "Title: " +String.valueOf(noteTitle.get(position)) + "\n\n" + "Note: " +String.valueOf(noteText.get(position)));
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(context, context.getString(R.string.your_note_is_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+                helper.showToast(context.getString(R.string.your_note_is_copied_to_clipboard), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
 
             }
         });
@@ -77,8 +80,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
         holder.imgDeleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Your note will be deleted", Toast.LENGTH_SHORT).show();
-
+                helper.showToast(context.getString(R.string.your_note_is_deleted), Helper.TOAST_MESSAGE_TYPE_SUCCESS );
                 DatabaseHelper databaseHelper=new DatabaseHelper(context);
                 databaseHelper.deleteOneRow(String.valueOf(noteId.get(position)));
 

@@ -9,9 +9,15 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.R;
+
+import java.util.HashMap;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
+    Helper helper;
     private static final String DATABASE_NAME = "LernTagebuch.db";
     private static final int DATABASE_VERSION= 1;
     private static final String TABLE_NAME = "notes";
@@ -22,6 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context=context;
+        helper=new Helper(context);
     }
 
     @Override
@@ -50,11 +57,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, cv);
         if (result ==-1) 
         {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else 
         {
-            Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.added_successfully), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
         }
     }
 
@@ -83,11 +90,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{noteId});
         if(result==-1)
         {
-            Toast.makeText(context, "Failed Updated", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.update_failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else
         {
-            Toast.makeText(context, "Successfully Updated", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.successfully_updated), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
         }
     }
 
@@ -102,11 +109,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result==-1) // An error
         {
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.failed_to_delete), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else
         {
-            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.deleted_successfully), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
         }
 
     }

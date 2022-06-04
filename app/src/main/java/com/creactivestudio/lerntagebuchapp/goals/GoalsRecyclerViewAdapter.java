@@ -2,6 +2,7 @@ package com.creactivestudio.lerntagebuchapp.goals;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.wifi.aware.SubscribeConfig;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
 
 import java.util.ArrayList;
 
 public class GoalsRecyclerViewAdapter extends RecyclerView.Adapter<GoalsRecyclerViewAdapter.GoalsViewHolder> {
 
+    Helper helper;
     private Context context;
     Activity activity;
     private ArrayList goalId, goalTheme, goalTime;
@@ -29,6 +32,7 @@ public class GoalsRecyclerViewAdapter extends RecyclerView.Adapter<GoalsRecycler
         this.goalId =goalIdList;
         this.goalTheme =goalThemeList;
         this.goalTime =goalTimeList;
+        helper=new Helper(context);
 
     }
 
@@ -64,7 +68,7 @@ public class GoalsRecyclerViewAdapter extends RecyclerView.Adapter<GoalsRecycler
                 // TODO: 12.05.22 noch nicht fertig
                 DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(context);
                 databaseHelperLearningGoals.deleteOneRow(String.valueOf(goalId.get(position)));
-                Toast.makeText(context, context.getString(R.string.dein_ziel_ist_geloescht) , Toast.LENGTH_SHORT).show();
+                helper.showToast(context.getString(R.string.dein_ziel_ist_geloescht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
                 //notifyDataSetChanged();
                 activity.recreate(); // aktualiesiere activity
             }

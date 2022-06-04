@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.media.MediaCodecInfo;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 import com.creactivestudio.lerntagebuchapp.goals.GoalsRecyclerViewAdapter;
 
@@ -27,7 +25,7 @@ import java.util.ArrayList;
  * arbeiten will.
  */
 public class CreateStudyPlan extends AppCompatActivity {
-
+    Helper helper;
     GoalsRecyclerViewAdapter goalsRecyclerViewAdapter; // Adapter benötigt für Recycler View.
     RecyclerView rvGoals; // Da sieht der Benutzer bereitgestelltte Lern Ziele
     DatabaseHelperLearningGoals databaseHelperLearningGoals;
@@ -41,7 +39,7 @@ public class CreateStudyPlan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_study_plan);
 
-        initViews(); // Initialition von View-Objekts
+        init(); // Initialition von View-Objekts
         setDataForSpinner(); // Wir weisen die Daten zu Spinner vom XML Datei. 
 
         storeDataInArrays(); // Wir speichern alle Daten von Sqlite zu oben besreibene Array Lists ein. 
@@ -60,7 +58,7 @@ public class CreateStudyPlan extends AppCompatActivity {
     /**
      * Initialition von views
      */
-    public void initViews()
+    public void init()
     {
         spinnerThemen=findViewById(R.id.spinnerThemen);
         etGoalTime =findViewById(R.id.etZielZeit);
@@ -70,7 +68,7 @@ public class CreateStudyPlan extends AppCompatActivity {
         goalIdList =new ArrayList<>();
         goalThemeList =new ArrayList<>();
         goalTimeList =new ArrayList<>();
-
+        helper=new Helper(this);
         goalsRecyclerViewAdapter=new GoalsRecyclerViewAdapter(CreateStudyPlan.this, this, goalIdList, goalThemeList, goalTimeList);
 
 
@@ -95,7 +93,8 @@ public class CreateStudyPlan extends AppCompatActivity {
         Cursor cursor= databaseHelperLearningGoals.readAllData(); // Cursor geht alle Columns schritt für schritt vor.
         if(cursor.getCount()==0) // Wenn kein Data gibt dann informiere den Benutzer.
         {
-            Toast.makeText(this, getString(R.string.no_data), Toast.LENGTH_SHORT).show();
+            helper.showToast(getString(R.string.du_hast_noch_nicht_dein_lernplan_erstellt), Helper.TOAST_MESSAGE_TYPE_ERROR);
+           // Toast.makeText(this, getString(R.string.no_data), Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -122,13 +121,13 @@ public class CreateStudyPlan extends AppCompatActivity {
 
         if (spinnerThemen.getSelectedItemPosition()==0) // Kontrolliere zunächst ob ein Thema ausgewählt ist, wenn nicht informiere den Benutzer
         {
-            Toast.makeText(this, getString(R.string.bitte_waehle_ein_thema), Toast.LENGTH_SHORT).show();
+            helper.showToast(getString(R.string.bitte_waehle_ein_thema), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else  // Wenn der Benutzer hat ein Thema ausgewählt dann speicher die Daten
         {
             if(etGoalTime.getText().toString().equals("")) // Kontrolliere ob der Benutzer Zeit Eingabe ausgefüllt hat.
             {   // Wenn nicht gib eine Meldung
-                Toast.makeText(this, getString(R.string.fuelle_die_zeit_eingabe_ein), Toast.LENGTH_SHORT).show();
+                helper.showToast(getString(R.string.fuelle_die_zeit_eingabe_ein), Helper.TOAST_MESSAGE_TYPE_ERROR);
             }
             else {  // Wenn alle eingaben richtig ausgefüllt ist dann speiche die Daten zu SQLite Datenbank.
                 String selectedTheme = spinnerThemen.getSelectedItem().toString();
@@ -169,7 +168,7 @@ public class CreateStudyPlan extends AppCompatActivity {
         }
         else // wenn der Benutzer kein Thema hinzugefügt hat dann gib eine Nachricht
         {
-            Toast.makeText(this, getString(R.string.please_save_theme), Toast.LENGTH_SHORT).show();
+            helper.showToast(getString(R.string.please_save_theme), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
 
     }

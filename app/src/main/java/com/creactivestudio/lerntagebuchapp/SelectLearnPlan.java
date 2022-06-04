@@ -4,20 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 
 import java.util.ArrayList;
 
 public class SelectLearnPlan extends AppCompatActivity {
 
+    Helper helper;
     AllThemesRecyclerViewAdapter allThemesRecyclerViewAdapter;
     RecyclerView rvAllThemes;
     DatabaseHelperLearningGoals databaseHelperLearningGoals;
@@ -29,7 +27,7 @@ public class SelectLearnPlan extends AppCompatActivity {
         setContentView(R.layout.activity_select_learn_plan);
 
 
-        initViews();// Initialition von Views
+        init();// Initialition
 
         storeDataInArrays(); // Wir speichern alle Daten von Sqlite zu oben besreibene Array Lists ein.
         rvAllThemes.setAdapter(allThemesRecyclerViewAdapter);
@@ -40,11 +38,11 @@ public class SelectLearnPlan extends AppCompatActivity {
     /**
      * Initialition von Views
      */
-    public void initViews ()
+    public void init()
     {
         databaseHelperLearningGoals=new DatabaseHelperLearningGoals(SelectLearnPlan.this);
         rvAllThemes=findViewById(R.id.rvAllThemes);
-
+        helper=new Helper(this);
         goalIdList =new ArrayList<>();
         goalThemeList =new ArrayList<>();
         goalTimeList =new ArrayList<>();
@@ -63,7 +61,7 @@ public class SelectLearnPlan extends AppCompatActivity {
         Cursor cursor= databaseHelperLearningGoals.readAllData(); // Cursor geht alle Columns schritt für schritt vor.
         if(cursor.getCount()==0) // Wenn kein Data gibt dann informiere den Benutzer.
         {
-            Toast.makeText(this, getString(R.string.no_data), Toast.LENGTH_SHORT).show();
+            helper.showToast(getString(R.string.no_data), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else
         {

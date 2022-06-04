@@ -9,10 +9,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
 
 public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
+    Helper helper;
     private Context context;
     private static final String DATABASE_NAME = "LernZiel.db";
     private static final int DATABASE_VERSION= 1;
@@ -24,6 +26,7 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
     public DatabaseHelperLearningGoals(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context=context;
+        helper=new Helper(context);
     }
 
 
@@ -53,12 +56,12 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, cv);
         if (result ==-1)
         {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else
         {
-            Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
-        }
+            helper.showToast(context.getString(R.string.added_successfully), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
+         }
 
     }
 
@@ -103,7 +106,7 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{goalId});
         if(result==-1) // Wenn ein Fehler aufgetreten ist
         {
-            Toast.makeText(context, context.getString(R.string.update_failed), Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.update_failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else  // Wenn kein Fehler gibt und Problemlos aktualisiert ist
         {
@@ -117,11 +120,11 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result==-1) // An error
         {
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.failed_to_delete), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
         else
         {
-            Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+            helper.showToast(context.getString(R.string.deleted_successfully), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
         }
 
     }
@@ -168,8 +171,7 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         }
         else
         {
-            Toast.makeText(context,context.getString(R.string.an_error_is_occured), Toast.LENGTH_SHORT).show();
-
+            helper.showToast(context.getString(R.string.an_error_is_occured), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
 
         return isThemenSaved;

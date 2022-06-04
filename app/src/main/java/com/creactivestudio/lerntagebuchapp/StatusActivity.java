@@ -15,12 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 public class StatusActivity extends AppCompatActivity {
 
     private NotificationManager mNotificationManager;
-
+    Helper helper;
     private boolean timerPaused;
     ImageView imgDoNotDisturb, imgDoNotDisturbOff;
     long startTime=0;
@@ -57,7 +58,7 @@ public class StatusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_status);
 
 
-        initViews(); // Initialition von View-Objekts
+        init(); // Initialition
         
         timerStart();
         getGoalTime();
@@ -137,8 +138,9 @@ public class StatusActivity extends AppCompatActivity {
     /**
      * Initialition von Views
      */
-    public void initViews()
+    public void init()
     {
+        helper=new Helper(this);
         tvTimer=findViewById(R.id.tvTimer);
         rootLayout=findViewById(R.id.rootLayout);
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -207,7 +209,7 @@ public class StatusActivity extends AppCompatActivity {
     {
         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
         rootLayout.setBackgroundColor(Color.BLACK);
-        Toast.makeText(this, getString(R.string.nicht_stoeren_modus_an), Toast.LENGTH_SHORT).show();
+        helper.showToast(getString(R.string.nicht_stoeren_modus_an),Helper.TOAST_MESSAGE_TYPE_SUCCESS);
         tvTimer.setTextColor(Color.WHITE);
        // imgDoNotDisturb.setImageResource(R.drawable.icon_do_not_disturb_on);
       //  imgDoNotDisturbOff.setVisibility(View.INVISIBLE);
@@ -240,7 +242,7 @@ public class StatusActivity extends AppCompatActivity {
         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
         rootLayout.setBackgroundColor(Color.WHITE);
         tvTimer.setTextColor(Color.BLACK);
-        Toast.makeText(this, getString(R.string.nicht_stoeren_modus_aus), Toast.LENGTH_SHORT).show();
+        helper.showToast(getString(R.string.nicht_stoeren_modus_aus), Helper.TOAST_MESSAGE_TYPE_ERROR);
        // imgDoNotDisturb.setVisibility(View.INVISIBLE);
     }
 
