@@ -1,6 +1,8 @@
 package com.creactivestudio.lerntagebuchapp.note;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -49,6 +51,29 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
         holder.noteId.setText(String.valueOf(noteId.get(position)));
         holder.noteTitle.setText(String.valueOf(noteTitle.get(position)));
         holder.noteText.setText(String.valueOf(noteText.get(position)));
+        holder.imgCopyNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+
+                ClipData clip = ClipData.newPlainText("label", "Title: " +String.valueOf(noteTitle.get(position)) + "\n\n" + "Note: " +String.valueOf(noteText.get(position)));
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(context, context.getString(R.string.your_note_is_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        holder.imgShareNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = context.getString(R.string.check_my_note);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareBody);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,"Title: " +String.valueOf(noteTitle.get(position)) + "\n\n" + "Note: " +String.valueOf(noteText.get(position)));
+                context.startActivity(Intent.createChooser(sharingIntent, context.getString(R.string.share_via)));
+
+            }
+        });
         holder.imgDeleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +107,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView noteId, noteTitle, noteText;
-        ImageView imgUpdate, imgDeleteNote;
+        ImageView imgUpdate, imgDeleteNote, imgShareNote, imgCopyNote;
         LinearLayout rvItemLinearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -93,6 +118,9 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
             rvItemLinearLayout=itemView.findViewById(R.id.rv_item_linear_layout);
             imgUpdate=itemView.findViewById(R.id.imgUpdateGoal);
             imgDeleteNote=itemView.findViewById(R.id.imgDeleteGoal);
+            imgShareNote=itemView.findViewById(R.id.imgShareNote);
+            imgCopyNote=itemView.findViewById(R.id.imgCopyNote);
+
         }
     }
 }

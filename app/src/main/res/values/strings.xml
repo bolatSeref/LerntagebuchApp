@@ -31,6 +31,9 @@
     <string name="nicht_stoeren_modus_an">Nicht stören Modus an!</string>
     <string name="nicht_stoeren_modus_aus">Nicht stören modus ist ausgeschaltet!</string>
     <string name="du_hast_dein_ziel_erreicht">Du hast dein Ziel erreicht :)</string>
+    <string name="check_my_note">Check my note!</string>
+    <string name="share_via">Share via ...</string>
+    <string name="your_note_is_copied_to_clipboard">Your note is copied to clipboard!</string>
 
     <string-array name="mathe_themen">
         <item>Wähle Themen um dein Lernziel zu bestimmen! </item>
