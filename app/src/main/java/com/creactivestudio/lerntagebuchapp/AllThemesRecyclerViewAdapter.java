@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -44,15 +45,17 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
     public void onBindViewHolder(@NonNull AllThemesViewHolder holder, int position) {
         holder.tvGoalThemeAllThemes.setText(String.valueOf(goalTheme.get(position)));
         holder.tvGoalTimeAllThemes.setText(String.valueOf(goalTime.get(position) + " " + context.getString(R.string.minute)));
-
-        holder.imgStartTheme.setOnClickListener(new View.OnClickListener() {
+        holder.themeCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, StatusActivity.class);
                 intent.putExtra("goalTime", String.valueOf(goalTime.get(position)));
+                intent.putExtra("goalId", String.valueOf(goalId.get(position)));
                 context.startActivity(intent);
             }
         });
+
+
     }
 
 
@@ -64,6 +67,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
     public class AllThemesViewHolder extends RecyclerView.ViewHolder {
         TextView tvGoalThemeAllThemes, tvGoalTimeAllThemes;
         ImageView imgStartTheme;
+        CardView themeCardView;
 
         public AllThemesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +75,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
             tvGoalThemeAllThemes=itemView.findViewById(R.id.tvGoalThemeAllThemes);
             tvGoalTimeAllThemes=itemView.findViewById(R.id.tvGoalTimeAllThemes);
             imgStartTheme=itemView.findViewById(R.id.imgStartTheme);
+            themeCardView=itemView.findViewById(R.id.themeCardView);
 
 
         }

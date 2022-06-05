@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 public class StatusActivity extends AppCompatActivity {
@@ -119,6 +121,44 @@ public class StatusActivity extends AppCompatActivity {
         timerHandler.postDelayed(timerRunnable,0);
 
         timerPaused=false;
+
+    }
+
+    /**
+     * Speiche die Zeit, die den Benutzer gelernt hat.
+     * @param view
+     */
+    public void saveTime (View view)
+    {
+        Intent intent=getIntent();
+        String goalId=intent.getStringExtra("goalId");
+
+
+        DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);
+        databaseHelperLearningGoals.saveTimeToSql(goalId, 10);
+// TODO: 06.06.22 learn time saatten gelecek
+        Cursor cursor=databaseHelperLearningGoals.readAllData();
+        if(cursor.getCount()==0)
+        {
+            helper.showToast(getString(R.string.no_data), Helper.TOAST_MESSAGE_TYPE_ERROR);
+        }
+        else
+        {
+            while (cursor.moveToNext())
+            {
+               // Toast.makeText(this, cursor.getString(0), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(this, cursor.getString(1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, cursor.getString(3), Toast.LENGTH_SHORT).show();
+                System.out.println(cursor.getString(3));
+                System.out.println(cursor.getString(2));
+                System.out.println(cursor.getString(1));
+                System.out.println(cursor.getString(0));
+            }
+        }
+    }
+
+    public void getData ()
+    {
 
     }
 

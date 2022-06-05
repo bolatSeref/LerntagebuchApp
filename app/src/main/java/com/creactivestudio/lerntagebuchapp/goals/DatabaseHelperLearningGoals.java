@@ -2,6 +2,7 @@ package com.creactivestudio.lerntagebuchapp.goals;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
+import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
@@ -22,6 +24,7 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_THEMA_NAME = "thema_name";
     private static final String COLUMN_ZIEL_ZEIT = "ziel_zeit";
+    private static final String COLUMN_GELERNTE_ZEIT = "gelernte_zeit";
 
     public DatabaseHelperLearningGoals(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,11 +35,21 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+       /*
         String query =
                 "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_THEMA_NAME + " TEXT, " +
                         COLUMN_ZIEL_ZEIT + " TEXT);";
+        sqLiteDatabase.execSQL(query);
+
+        */
+        String query =
+                "CREATE TABLE " + TABLE_NAME +
+                        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUMN_THEMA_NAME + " TEXT, " +
+                        COLUMN_ZIEL_ZEIT + " TEXT, " +
+                        COLUMN_GELERNTE_ZEIT + " INTEGER);";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -44,6 +57,27 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
+    }
+
+    public void saveTimeToSql (String themeId, int learnTime)
+    {
+        SQLiteDatabase database=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+
+        contentValues.put(COLUMN_GELERNTE_ZEIT, learnTime);
+
+        long result=database.update(TABLE_NAME, contentValues, "_id = ?", new String[]{themeId});
+
+        if(result==-1)
+        {
+            helper.showToast(context.getString(R.string.update_failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
+        }
+        else
+        {
+            helper.showToast(context.getString(R.string.successfully_updated), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
+          //  context.startActivity(new Intent(context, ViewAllNotesActivity.class));
+
+        }
     }
 
     public void addNote (String themaName, String zielZeit) {

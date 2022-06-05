@@ -34,7 +34,7 @@ public class EvaluateYourSelfActivity extends AppCompatActivity {
         init();
 
         setThemesArrayFromXML();
-        setRadioGroupData();
+        //setRadioGroupData();
 
         evaluateYourSelfRvAdapter=new EvaluateYourSelfRvAdapter(this, this
         , testList);
