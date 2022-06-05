@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -32,9 +33,15 @@ public class UpdateNoteActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Note id bekommen wir durch Intent dann senden wir neue Eingaben zu Datenbank
+     * @param view
+     */
     public void updateNote (View view)
     {
         DatabaseHelper databaseHelper=new DatabaseHelper(UpdateNoteActivity.this);
+        noteTitle=etNoteTitleUpdate.getText().toString();
+        noteText=etNoteTextUpdate.getText().toString();
         databaseHelper.updateData(noteId, noteTitle,noteText);
     }
 

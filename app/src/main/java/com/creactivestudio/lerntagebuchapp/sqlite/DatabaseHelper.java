@@ -2,6 +2,7 @@ package com.creactivestudio.lerntagebuchapp.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,6 +12,8 @@ import androidx.annotation.Nullable;
 
 import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
+import com.creactivestudio.lerntagebuchapp.note.UpdateNoteActivity;
+import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 import java.util.HashMap;
 
@@ -79,6 +82,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    /**
+     *
+     * @param noteId
+     * @param noteTitle
+     * @param noteText
+     */
     public void updateData(String noteId, String noteTitle, String noteText)
     {
         SQLiteDatabase db=this.getWritableDatabase();
@@ -87,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_TITLE, noteTitle);
         cv.put(COLUMN_NOTE_TEXT, noteText);
 
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{noteId});
+        long result = db.update(TABLE_NAME, cv, "_id = ?", new String[]{noteId});
         if(result==-1)
         {
             helper.showToast(context.getString(R.string.update_failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
@@ -95,6 +104,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
         {
             helper.showToast(context.getString(R.string.successfully_updated), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
+            context.startActivity(new Intent(context, ViewAllNotesActivity.class));
+
         }
     }
 

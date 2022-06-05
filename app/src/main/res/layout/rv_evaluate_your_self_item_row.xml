@@ -54,6 +54,7 @@
                     android:layout_height="120dp"
                     android:background="@drawable/custom_btn_radio_red"
                     android:button="@drawable/icon_check_red_half"
+                    android:tag="red"
                     tools:ignore="DuplicateSpeakableTextCheck" />
 
 
@@ -62,14 +63,16 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/custom_btn_radio_orange"
-                    android:button="@drawable/icon_check_orange_full" />
+                    android:button="@drawable/icon_check_orange_full"
+                    android:tag="yellow" />
 
                 <RadioButton
                     android:id="@+id/radioButtonGreen"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/custom_btn_radio"
-                    android:button="@drawable/icon_circle_check_half_green" />
+                    android:button="@drawable/icon_circle_check_half_green"
+                    android:tag="green" />
 
 
             </RadioGroup>
