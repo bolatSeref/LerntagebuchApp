@@ -147,10 +147,11 @@ public class CreateStudyPlan extends AppCompatActivity {
      */
     public void setDataForSpinner ()
     {
+       // ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.mathe_themen, R.layout.spinner);
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.mathe_themen, R.layout.spinner);
         //adapter.setDropDownViewResource(R.layout.spinner);
         spinnerThemen.setAdapter(adapter);
-        spinnerThemen.setPopupBackgroundResource(android.R.color.holo_green_light);// Ändere Spinner Background Farbe
+        spinnerThemen.setPopupBackgroundResource(android.R.color.holo_blue_light);// Ändere Spinner Background Farbe
     }
 
 
