@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvWeeklyGoalTime, tvLearnStatus;
     ProgressBar progressBarWeeklyGoals;
-    int totalGoalTime;
+    int totalGoalTime, learnTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         initViews(); // initializiere Views
-        setTvWeeklyGoalTime();
+        setTvWeeklyGoalTimeAndLearnTime();
         setTvLearnStatus();
         // TODO: 13.05.22 progress wert wird vom Datenbank abgeholt
-        setProgressBarWeeklyGoals(totalGoalTime, totalGoalTime/3);
+        setProgressBarWeeklyGoals( totalGoalTime, learnTime);
     }
 
     /**
@@ -75,16 +75,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      *
      */
-    public void setTvWeeklyGoalTime ()
+    public void setTvWeeklyGoalTimeAndLearnTime()
     {
         DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);
         totalGoalTime=databaseHelperLearningGoals.getLearningGoalTime();
         tvWeeklyGoalTime.setText("Dein Ziel ist " + totalGoalTime + " Minuten");
+        learnTime=databaseHelperLearningGoals.getLearnTime();
+
+        tvLearnStatus.setText("Du hast " + learnTime + " Minuten gelernt.");
+
     }
 
     public void setTvLearnStatus ()
     {
-        tvLearnStatus.setText("Du hast " + "20" + " Minuten gelernt.");
+      //   tvLearnStatus.setText("Du hast " + "20" + " Minuten gelernt.");
     }
 
     /**

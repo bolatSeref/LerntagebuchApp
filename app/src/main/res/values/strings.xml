@@ -40,6 +40,8 @@
     <string name="failed_to_delete">Failed to delete your note!</string>
     <string name="deleted_successfully">Deleted successfully!</string>
     <string name="your_note_is_deleted">Your note is deleted successfully!</string>
+    <string name="dein_lern_zeit_ist_gespeichert">Dein Lernzeit ist gespeichert</string>
+    <string name="du_musst_mindestens_1_min_lernen_um_zu_speichern">Du musst mindestens 1 Minute lernen um dein Lernzeit zu speichern kannst!</string>
 
     <string-array name="mathe_themen">
         <item>Wähle Themen um dein Lernziel zu bestimmen! </item>

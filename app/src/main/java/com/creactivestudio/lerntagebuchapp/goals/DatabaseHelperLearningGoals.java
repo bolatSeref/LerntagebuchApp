@@ -186,6 +186,24 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         return total;
     }
 
+
+    public int getLearnTime ()
+    {
+        String query = "SELECT SUM(" + DatabaseHelperLearningGoals.COLUMN_GELERNTE_ZEIT + ") as Total FROM " + TABLE_NAME; // Bring alle Daten
+        SQLiteDatabase db=this.getReadableDatabase(); // Lesende zugriff
+        int total=0;
+        Cursor cursor = null;
+        if (db!=null)
+        {
+            cursor=db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                total = cursor.getInt(cursor.getColumnIndex("Total"));
+            }
+        }
+
+        return total;
+    }
+
     /**
      * Kontrolliere ob der Benutzer mindestens einen Thema hinzugefügt hat.
      * @return  Wenn ja return true wenn nicht return false

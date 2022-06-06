@@ -133,26 +133,42 @@ public class StatusActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String goalId=intent.getStringExtra("goalId");
 
-
-        DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);
-        databaseHelperLearningGoals.saveTimeToSql(goalId, 10);
-// TODO: 06.06.22 learn time saatten gelecek
-        Cursor cursor=databaseHelperLearningGoals.readAllData();
-        if(cursor.getCount()==0)
+        int learnTime= (int) (millis/1000)/60;
+        if(learnTime<=0)
         {
-            helper.showToast(getString(R.string.no_data), Helper.TOAST_MESSAGE_TYPE_ERROR);
+            helper.showToast(getString(R.string.du_musst_mindestens_1_min_lernen_um_zu_speichern), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
-        else
-        {
-            while (cursor.moveToNext())
-            {
-               // Toast.makeText(this, cursor.getString(0), Toast.LENGTH_SHORT).show();
-             //   Toast.makeText(this, cursor.getString(1), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, cursor.getString(3), Toast.LENGTH_SHORT).show();
-                System.out.println(cursor.getString(3));
-                System.out.println(cursor.getString(2));
-                System.out.println(cursor.getString(1));
-                System.out.println(cursor.getString(0));
+        else {
+            DatabaseHelperLearningGoals databaseHelperLearningGoals = new DatabaseHelperLearningGoals(this);
+            databaseHelperLearningGoals.saveTimeToSql(goalId, learnTime);
+// TODO: 06.06.22 kaydettikten sonra timer durdur
+
+            Cursor cursor = databaseHelperLearningGoals.readAllData();
+            if (cursor.getCount() == 0) {
+                helper.showToast(getString(R.string.no_data), Helper.TOAST_MESSAGE_TYPE_ERROR);
+            } else {
+                while (cursor.moveToNext()) {
+                    // Toast.makeText(this, cursor.getString(0), Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(this, cursor.getString(1), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, cursor.getString(3), Toast.LENGTH_SHORT).show();
+                    System.out.println(cursor.getString(3));
+                    System.out.println(cursor.getString(2));
+                    System.out.println(cursor.getString(1));
+                    System.out.println(cursor.getString(0));
+                }
+                helper.showToast(getString(R.string.dein_lern_zeit_ist_gespeichert) + "\n\nDu hast " + learnTime + " Minuten gelernt.", Helper.TOAST_MESSAGE_TYPE_SUCCESS);
+                stopTimer(view);
+                timerHandler.removeCallbacks(timerRunnable);//stop timer
+
+                Handler handler = new Handler(); // wait 2 seconds and then go to main activity
+                handler.postDelayed(new Runnable(){
+                    @Override
+                    public void run(){
+                        startActivity(new Intent(StatusActivity.this, MainActivity.class));
+                    }
+                }, 2000);
+
+
             }
         }
     }
