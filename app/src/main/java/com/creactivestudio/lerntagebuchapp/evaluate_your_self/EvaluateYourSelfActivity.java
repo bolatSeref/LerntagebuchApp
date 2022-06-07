@@ -21,43 +21,36 @@ import java.util.List;
 public class EvaluateYourSelfActivity extends AppCompatActivity {
 
     EvaluateYourSelfRvAdapter evaluateYourSelfRvAdapter;
-    ArrayList themeList;
-    RecyclerView rvEvaluation;
-    List<String> testList;
-    SharedPreferences pref;
+    private ArrayList themeList;
+    private RecyclerView rvEvaluation;
+    private List<String> testList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluate_your_self);
 
-        init();
+        init(); // Initialisierung
 
-        setThemesArrayFromXML();
-        //setRadioGroupData();
+        setThemesArrayFromXML(); // Hole Mathe Themen aus XML Datei ein
 
         evaluateYourSelfRvAdapter=new EvaluateYourSelfRvAdapter(this, this
-        , testList);
+        , testList); // Recycler View Adapter ist initialisiert
         rvEvaluation.setAdapter(evaluateYourSelfRvAdapter);
         rvEvaluation.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
 
+    /**
+     * Initialisiere Views usw.
+     */
     public void init() {
         rvEvaluation = findViewById(R.id.rvEvaluation);
         themeList = new ArrayList();
         testList=new ArrayList<>();
     }
 
-    public void setRadioGroupData ()
-    {
-        pref = this.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-       // pref.getString("Rechengrundlagen","null");
-        pref.getString(testList.get(0),"null");
-       // Toast.makeText(this, pref.getString("Rechengrundlagen","null"), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, pref.getString(testList.get(0),"null"), Toast.LENGTH_SHORT).show();
-    }
     /**
      *
      */

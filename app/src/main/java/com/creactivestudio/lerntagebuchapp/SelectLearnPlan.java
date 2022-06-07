@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
@@ -20,7 +19,7 @@ public class SelectLearnPlan extends AppCompatActivity {
     RecyclerView rvAllThemes;
     DatabaseHelperLearningGoals databaseHelperLearningGoals;
     ArrayList<String> goalIdList, goalThemeList, goalTimeList; // Die Werte bekommen wir von SQLite Datenbank dann ordnen wir zu dieser Array Listen ein.
-
+    ArrayList<Integer> learnTimeList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +45,9 @@ public class SelectLearnPlan extends AppCompatActivity {
         goalIdList =new ArrayList<>();
         goalThemeList =new ArrayList<>();
         goalTimeList =new ArrayList<>();
+        learnTimeList =new ArrayList<>();
 
-        allThemesRecyclerViewAdapter=new AllThemesRecyclerViewAdapter(this, this, goalIdList, goalThemeList, goalTimeList);
+        allThemesRecyclerViewAdapter=new AllThemesRecyclerViewAdapter(this, this, goalIdList, goalThemeList, goalTimeList, learnTimeList);
 
 
     }
@@ -70,6 +70,7 @@ public class SelectLearnPlan extends AppCompatActivity {
                 goalIdList.add(cursor.getString(0));
                 goalThemeList.add(cursor.getString(1));
                 goalTimeList.add(cursor.getString(2));
+                learnTimeList.add(cursor.getInt(3));
 
                 //goalsRecyclerViewAdapter.notifyDataSetChanged();
 

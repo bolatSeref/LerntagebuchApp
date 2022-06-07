@@ -42,9 +42,7 @@ public class StatusActivity extends AppCompatActivity {
            // goalTime=goalTime*1000*60;
 
             // Wenn der Benutzer sein Ziel erreicht hat dann informiere den Benutzer
-            if (goalTime==(millis/1000)/60) Toast.makeText(StatusActivity.this, getString(R.string.du_hast_dein_ziel_erreicht), Toast.LENGTH_SHORT).show();
-           // if (goalTime==millis) Toast.makeText(StatusActivity.this, getString(R.string.du_hast_dein_ziel_erreicht), Toast.LENGTH_SHORT).show();
-// TODO: 26.05.22 musik wenn der Benutzer sein Ziel erreicht hat
+            if (goalTime==(millis/1000)/60) helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
 
                 tvTimer.setText(String.format("%d:%02d", minutes, seconds));
 

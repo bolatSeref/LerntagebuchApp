@@ -18,7 +18,7 @@ import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
  */
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvWeeklyGoalTime, tvLearnStatus;
+    TextView tvWeeklyGoalTime, tvLearnStatus, tvCongratulation;
     ProgressBar progressBarWeeklyGoals;
     int totalGoalTime, learnTime;
 
@@ -28,11 +28,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
 
-        initViews(); // initializiere Views
-        setTvWeeklyGoalTimeAndLearnTime();
-        setTvLearnStatus();
-        // TODO: 13.05.22 progress wert wird vom Datenbank abgeholt
-        setProgressBarWeeklyGoals( totalGoalTime, learnTime);
+        init(); // initialisierung
+        setTextViews();
+
+        setProgressBarWeeklyGoals(totalGoalTime, learnTime);
     }
 
     /**
@@ -58,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
     /**
      * initializiere Views
      */
-    public void initViews()
+    public void init()
     {
         tvWeeklyGoalTime=findViewById(R.id.tvWeeklyGoalTime);
         progressBarWeeklyGoals=findViewById(R.id.progressBarWeeklyGoal);
         tvLearnStatus=findViewById(R.id.tvLearnStatus);
+        tvCongratulation=findViewById(R.id.tvCongratulation);
     }
 
     public void setProgressBarWeeklyGoals (int maxValue, int progressValue)
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     *  Informiere den Benutzer über seine Fortschrifte
      */
-    public void setTvWeeklyGoalTimeAndLearnTime()
+    public void setTextViews()
     {
         DatabaseHelperLearningGoals databaseHelperLearningGoals=new DatabaseHelperLearningGoals(this);
         totalGoalTime=databaseHelperLearningGoals.getLearningGoalTime();
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
         tvLearnStatus.setText("Du hast " + learnTime + " Minuten gelernt.");
 
-    }
+        if(learnTime>totalGoalTime) // Wenn der Benutzer sein Ziel erreicht hat, gratuliere den Benutzer.
+        {
+            tvCongratulation.setText(getString(R.string.du_hast_dein_ziel_erreicht));
+        }
 
-    public void setTvLearnStatus ()
-    {
-      //   tvLearnStatus.setText("Du hast " + "20" + " Minuten gelernt.");
     }
 
     /**
@@ -101,16 +101,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    /**
-     * Der Benutzer navigiert sich zu Statistics Activity, da kann er alle Statistiken sehen und sich einschätzen.
-     * @param view
-     */
-    public void myStatistics (View view)
-    {
-        Intent intent = new Intent(MainActivity.this, StatisticsActivity.class);
-        startActivity(intent);
-    }
 
     /**
      * Der Benutzer navigiert sich zu Evaluate Your Self Activity, da kann er sich bewerten.

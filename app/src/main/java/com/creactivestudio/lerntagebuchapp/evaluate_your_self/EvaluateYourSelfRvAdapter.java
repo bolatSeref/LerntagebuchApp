@@ -32,6 +32,12 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
     private List<String> themeList;
     final String radioGroupMapKey="radio_group_map_key";
 
+    /**
+     * Constructor bekommt diese Parametern
+     * @param activity
+     * @param context
+     * @param themeList
+     */
     public EvaluateYourSelfRvAdapter (Activity activity, Context context, List<String> themeList)
     {
         this.activity=activity;
@@ -54,10 +60,7 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
         SharedPreferences.Editor editor = pref.edit();
 
 
-        /**
-         * Set radio buttons with correct values from shared pref.
-         */
-        for(int i=0; i<themeList.size();i++)
+        for(int i=0; i<themeList.size();i++) //Setze alle gespeicherte Werte aus Shared Preferences ein.
         {
             if(position==i)
             {
@@ -74,90 +77,45 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
                 {
                     holder.radioButtonGreen.setChecked(true);
                 }
-                // holder.radioButtonRed.setBackgroundColor(context.getColor(R.color.design_default_color_error));
             }
         }
 
         holder.tvThemeTitle.setText(String.valueOf(themeList.get(position)));
-        holder.radioGroupEvaluation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        holder.radioGroupEvaluation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() { // Wenn der Benutzer Radio Buttons drückt setze den Wert ein zu Shared Preferences
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                Toast.makeText(context,String.valueOf(i), Toast.LENGTH_SHORT).show();
                 if(radioGroup.getCheckedRadioButtonId()==R.id.radioButtonRed)
-                //if( radioGroup.getTag().equals("red"))
                 {
-                    Toast.makeText(context,String.valueOf("red"), Toast.LENGTH_SHORT).show();
-                   // selectedRadioMap.put(themeList.get(holder.getAdapterPosition()).toString(),"red");
-                  //  saveMap(selectedRadioMap);
-
                     editor.putString(themeList.get(holder.getAdapterPosition()),"red");
                     editor.commit();
-                 //   editor.apply();
                 }
                 else if (radioGroup.getCheckedRadioButtonId()==R.id.radioButtonYellow)
                 {
-                    Toast.makeText(context,String.valueOf("yellow"), Toast.LENGTH_SHORT).show();
-                    //selectedRadioMap.put(themeList.get(holder.getAdapterPosition()).toString(),"yellow");
                     editor.putString(themeList.get(holder.getAdapterPosition()),"yellow");
                     editor.commit();
                 }
                 else if(radioGroup.getCheckedRadioButtonId()==R.id.radioButtonGreen)
                 {
-                    Toast.makeText(context,String.valueOf("green"), Toast.LENGTH_SHORT).show();
-                    //selectedRadioMap.put(themeList.get(holder.getAdapterPosition()).toString(),"green");
                     editor.putString(themeList.get(holder.getAdapterPosition()),"green");
                     editor.commit();
                 }
-
-
             }
         });
-
-
      }
 
-     private void saveMap(Map<String, String> inputMap)
-     {
-         SharedPreferences sharedPreferences=context.getApplicationContext().getSharedPreferences("myChoices", Context.MODE_PRIVATE);
-         if(sharedPreferences!=null)
-         {
-             JSONObject jsonObject=new JSONObject(inputMap);
-             String jsonString=jsonObject.toString();
-             SharedPreferences.Editor editor=sharedPreferences.edit();
-           //  editor.remove(radioGroupMapKey).apply();
-             editor.putString(radioGroupMapKey, jsonString);
-             editor.commit();
-         }
-     }
-
-    private Map<String, String> loadMap() {
-        Map<String, String> outputMap = new HashMap<>();
-        SharedPreferences pSharedPref = context.getApplicationContext().getSharedPreferences("myChoices",
-                Context.MODE_PRIVATE);
-        try {
-            if (pSharedPref != null) {
-                String jsonString = pSharedPref.getString(radioGroupMapKey, (new JSONObject()).toString());
-                JSONObject jsonObject = new JSONObject(jsonString);
-                Iterator<String> keysItr = jsonObject.keys();
-                while (keysItr.hasNext()) {
-                    String key = keysItr.next();
-                    outputMap.put(key, (String) jsonObject.get(key));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return outputMap;
-    }
-
-
-
-
+    /**
+     *
+     * Wir definieren wie viele Objekt in Recycler View sein muss. Weil wir die Daten aus der Array bekommen, geben wir lenght der Array ein.
+     * @return
+     */
     @Override
     public int getItemCount() {
         return themeList.size();
     }
 
+    /**
+     * Initialisieren wir unser Views dass wir im Recycler View verwenden wollen.
+     */
     public class EvaluateViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvThemeTitle;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,15 +22,16 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
 
     private Context context;
     Activity activity;
-    private ArrayList goalId, goalTheme, goalTime;
+    private ArrayList goalId, goalTheme, goalTime, learnTime;
 
-    public AllThemesRecyclerViewAdapter (Activity activity, Context context, ArrayList goalIdList, ArrayList goalThemeList, ArrayList goalTimeList )
+    public AllThemesRecyclerViewAdapter (Activity activity, Context context, ArrayList goalIdList, ArrayList goalThemeList, ArrayList goalTimeList, ArrayList learnTime )
     {
         this.activity=activity;
         this.context=context;
         this.goalId =goalIdList;
         this.goalTheme =goalThemeList;
         this.goalTime =goalTimeList;
+        this.learnTime=learnTime;
     }
 
 
@@ -43,6 +45,15 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
 
     @Override
     public void onBindViewHolder(@NonNull AllThemesViewHolder holder, int position) {
+
+        // TODO: 07.06.22 degerleri cek ve bas
+       // holder.progressBarGoalItem.setProgress(20);
+       holder.progressBarGoalItem.setProgress((Integer) learnTime.get(position));
+       holder.progressBarGoalItem.setScaleY(5f);
+       int goalTimeInt=Integer.parseInt(String.valueOf(goalTime.get(position)));
+       holder.progressBarGoalItem.setMax(goalTimeInt);
+
+
         holder.tvGoalThemeAllThemes.setText(String.valueOf(goalTheme.get(position)));
         holder.tvGoalTimeAllThemes.setText(String.valueOf(goalTime.get(position) + " " + context.getString(R.string.minute)));
         holder.themeCardView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +79,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
         TextView tvGoalThemeAllThemes, tvGoalTimeAllThemes;
         ImageView imgStartTheme;
         CardView themeCardView;
+        ProgressBar progressBarGoalItem;
 
         public AllThemesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +88,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
             tvGoalTimeAllThemes=itemView.findViewById(R.id.tvGoalTimeAllThemes);
             imgStartTheme=itemView.findViewById(R.id.imgStartTheme);
             themeCardView=itemView.findViewById(R.id.themeCardView);
+            progressBarGoalItem=itemView.findViewById(R.id.progressBar);
 
 
         }

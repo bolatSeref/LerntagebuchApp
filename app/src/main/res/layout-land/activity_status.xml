@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_general"
+    tools:context=".StatusActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="174dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_timer" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:orientation="horizontal"
+        android:paddingVertical="40dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:onClick="resumeTimer"
+            app:srcCompat="@drawable/icon_play" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:onClick="pauseTimer"
+            app:srcCompat="@drawable/icon_pause" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:onClick="stopTimer"
+            app:srcCompat="@drawable/icon_stop" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView36"
+        android:layout_width="500dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="29dp"
+        android:onClick="saveTime"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:srcCompat="@drawable/start_btn" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speichern"
+        android:textColor="#FAF7F7"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintEnd_toEndOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintTop_toTopOf="@+id/imageView36" />
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="00:15"
+        android:textColor="#03A9F4"
+        android:textSize="120sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+    <ImageView
+        android:id="@+id/imgDoNotDisturbOff"
+        android:layout_width="94dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="32dp"
+        android:onClick="doNotDisturbOff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgDoNotDisturbOn"
+        app:layout_constraintTop_toBottomOf="@+id/imgDoNotDisturbOn"
+        app:srcCompat="@drawable/icon_do_not_disturb_off" />
+
+    <ImageView
+        android:id="@+id/imgNotizen"
+        android:layout_width="94dp"
+        android:layout_height="141dp"
+        android:layout_marginEnd="72dp"
+        android:onClick="goToNotes"
+        app:layout_constraintBottom_toTopOf="@+id/imgDoNotDisturbOn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_notes" />
+
+    <ImageView
+        android:id="@+id/imgDoNotDisturbOn"
+        android:layout_width="94dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="32dp"
+        android:onClick="doNotDisturbOn"
+        app:layout_constraintBottom_toTopOf="@+id/imgDoNotDisturbOff"
+        app:layout_constraintEnd_toEndOf="@+id/imgNotizen"
+        app:layout_constraintTop_toBottomOf="@+id/imgNotizen"
+        app:srcCompat="@drawable/icon_do_not_disturb_on" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
