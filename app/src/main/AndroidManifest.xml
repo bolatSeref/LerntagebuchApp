@@ -6,9 +6,9 @@
     <application
 
         android:allowBackup="true"
-        android:icon="@mipmap/duck_app_icon"
+        android:icon="@mipmap/duck_app_icon_big"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/duck_app_icon"
+        android:roundIcon="@mipmap/duck_app_icon_big"
         android:supportsRtl="true"
         android:theme="@style/Theme.LerntagebuchApp">
         <activity

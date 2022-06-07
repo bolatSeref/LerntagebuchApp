@@ -11,6 +11,11 @@
         <entry key="app/src/main/res/drawable/spinner.xml" value="0.23125" />
         <entry key="app/src/main/res/drawable/spinner_item.xml" value="0.23125" />
         <entry key="app/src/main/res/drawable/start_btn.xml" value="0.193125" />
+        <entry key="app/src/main/res/layout-land/activity_add_note.xml" value="0.171484375" />
+        <entry key="app/src/main/res/layout-land/activity_main2.xml" value="0.171484375" />
+        <entry key="app/src/main/res/layout-land/activity_status.xml" value="0.171484375" />
+        <entry key="app/src/main/res/layout-land/activity_update_note.xml" value="0.171484375" />
+        <entry key="app/src/main/res/layout-land/activity_welcome_screen.xml" value="0.2346601146357018" />
         <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_bewertung.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/activity_create_study_plan.xml" value="0.33" />

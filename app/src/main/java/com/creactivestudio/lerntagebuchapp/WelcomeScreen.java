@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 
@@ -13,10 +16,14 @@ import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
  */
 public class WelcomeScreen extends AppCompatActivity {
 
+    //ImageView imgDuck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        init();
+
         getSupportActionBar().hide();
 
         // Wenn der Benutzer sein Ziel gespeichert hat dann beginnt der App vom Main Activity,
@@ -28,8 +35,14 @@ public class WelcomeScreen extends AppCompatActivity {
         }
 
 
-    }
+      //  Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_anim);
+      //  imgDuck.startAnimation(animation);
+     }
 
+    public void init()
+    {
+       // imgDuck=findViewById(R.id.imgDuck);
+    }
 
     /**
      * Der Benutzer kann sich zu Create Study Plan Activity navigieren, wo er sein Lern Plan erstellen bzw. verwalten kann.
