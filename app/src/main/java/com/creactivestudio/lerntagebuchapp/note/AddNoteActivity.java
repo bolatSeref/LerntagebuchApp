@@ -6,15 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
-import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 
 public class AddNoteActivity extends AppCompatActivity {
 
-    EditText etNoteTitle, etNoteText;
+    private EditText etNoteTitle, etNoteText;
     Helper helper;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +24,9 @@ public class AddNoteActivity extends AppCompatActivity {
         
     }
 
+    /**
+     * Initialiesiere Views usw.
+     */
     public void init()
     {
         etNoteText=findViewById(R.id.etNoteText);
@@ -56,12 +57,20 @@ public class AddNoteActivity extends AppCompatActivity {
 
         
     }
-    
+
+    /**
+     * Kontrolliere ob EditText leer ist.
+     * @param editText
+     * @return true wenn der Benutzer etwas geschrieben hat, false wenn nicht.
+     */
     public boolean checkEditText (EditText editText)
     {
         return  editText.getText().toString().trim().length()>0; 
     }
 
+    /**
+     * Wenn der Benutzer Zurück Taste gedrückt hat dann wechsel die Activity
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

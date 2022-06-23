@@ -2,17 +2,12 @@ package com.creactivestudio.lerntagebuchapp.goals;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
-import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
-import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
@@ -35,15 +30,6 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-       /*
-        String query =
-                "CREATE TABLE " + TABLE_NAME +
-                        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_THEMA_NAME + " TEXT, " +
-                        COLUMN_ZIEL_ZEIT + " TEXT);";
-        sqLiteDatabase.execSQL(query);
-
-        */
         String query =
                 "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -59,6 +45,11 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    /**
+     * Wenn der Benutzer sein gelernte Lernzeit speichern will, dann diese Methode speichert die Daten zum SQLite Datenbank.
+     * @param themeId beschreibt welche Theme hat der Benutzer gelernt
+     * @param learnTime  beschreibt gesamte Zeit
+     */
     public void saveTimeToSql (String themeId, int learnTime)
     {
         SQLiteDatabase database=this.getWritableDatabase();
@@ -80,7 +71,12 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         }
     }
 
-    public void addNote (String themaName, String zielZeit) {
+    /**
+     * Speicher neue Lernziele.
+     * @param themaName Beschreibt welche Theme  gelernt wird.
+     * @param zielZeit Beschreibt geplante lern Zeit.
+     */
+    public void addGoal (String themaName, String zielZeit) {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues cv=new ContentValues();
 
@@ -99,6 +95,10 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Mit hilfe diese Methode kann man alle Daten zugreifen.
+     * @return cursor
+     */
     public Cursor readAllData ()
     {
         String query = "SELECT * FROM " + TABLE_NAME; // Bring alle Daten
@@ -113,41 +113,10 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void getOneRow (String goalId)
-    {
-        String query="SELECT * FROM " + TABLE_NAME + " WHERE _id=goalId ";
-        SQLiteDatabase db=this.getReadableDatabase();
-
-
-        Cursor cursor=null;
-        if(db!=null)
-        {
-            cursor=db.rawQuery(query, null);
-        }
-
-
-    }
-
-
-    public void updateData(String goalId, String goalTheme, String goalTime)
-    {
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues cv=new ContentValues();
-        cv.put(COLUMN_ID, goalId);
-        cv.put(COLUMN_THEMA_NAME, goalTheme);
-        cv.put(COLUMN_ZIEL_ZEIT, goalTime);
-
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{goalId});
-        if(result==-1) // Wenn ein Fehler aufgetreten ist
-        {
-            helper.showToast(context.getString(R.string.update_failed), Helper.TOAST_MESSAGE_TYPE_ERROR);
-        }
-        else  // Wenn kein Fehler gibt und Problemlos aktualisiert ist
-        {
-            Toast.makeText(context, context.getString(R.string.successfully_updated), Toast.LENGTH_SHORT).show();
-        }
-    }
-
+    /**
+     * Mit hilfe dieser Methode kann man gewünschte Lernziele löschen.
+     * @param row_id Beschreibt gewünschte Lernziel.
+     */
     public void deleteOneRow (String row_id)
     {
         SQLiteDatabase db=this.getWritableDatabase();
@@ -163,11 +132,9 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
 
     }
 
-
-
     /**
-     * Gib gesamte Lern Ziel in Minuten zurück.
-     * @return
+     * Gibt gesamte Lern Ziel in Minuten zurück.
+     * @return gesamte Lernziel
      */
     public int getLearningGoalTime ()
     {
@@ -187,12 +154,16 @@ public class DatabaseHelperLearningGoals extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Gibt wie lange der Benutzer insgesamt gelernt hat als Rückgabewert zurück.
+     * @return gelernte Zeit
+     */
     public int getLearnTime ()
     {
         String query = "SELECT SUM(" + DatabaseHelperLearningGoals.COLUMN_GELERNTE_ZEIT + ") as Total FROM " + TABLE_NAME; // Bring alle Daten
         SQLiteDatabase db=this.getReadableDatabase(); // Lesende zugriff
         int total=0;
-        Cursor cursor = null;
+        Cursor cursor;
         if (db!=null)
         {
             cursor=db.rawQuery(query, null);

@@ -1,4 +1,4 @@
-package com.creactivestudio.lerntagebuchapp;
+package com.creactivestudio.lerntagebuchapp.goals;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,11 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.creactivestudio.Helper;
-import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
-import com.creactivestudio.lerntagebuchapp.goals.GoalsRecyclerViewAdapter;
+import com.creactivestudio.lerntagebuchapp.Helper;
+import com.creactivestudio.lerntagebuchapp.MainActivity;
+import com.creactivestudio.lerntagebuchapp.R;
 
 import java.util.ArrayList;
 
@@ -132,7 +131,7 @@ public class CreateStudyPlan extends AppCompatActivity {
             else {  // Wenn alle eingaben richtig ausgefüllt ist dann speiche die Daten zu SQLite Datenbank.
                 String selectedTheme = spinnerThemen.getSelectedItem().toString();
                 DatabaseHelperLearningGoals db = new DatabaseHelperLearningGoals(CreateStudyPlan.this);
-                db.addNote(selectedTheme, etGoalTime.getText().toString().trim());
+                db.addGoal(selectedTheme, etGoalTime.getText().toString().trim());
                 // goalsRecyclerViewAdapter.notifyItemInserted(goalIdList.size());
                 // goalsRecyclerViewAdapter.notifyDataSetChanged();
                 etGoalTime.setText("");// Leere Edit Text nach dem einfügen

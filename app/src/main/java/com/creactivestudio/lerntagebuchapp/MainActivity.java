@@ -9,7 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.creactivestudio.lerntagebuchapp.evaluate_your_self.EvaluateYourSelfActivity;
+import com.creactivestudio.lerntagebuchapp.goals.CreateStudyPlan;
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
+import com.creactivestudio.lerntagebuchapp.goals.SelectThemeToLearn;
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 /**
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void startLearning(View view)
     {
-        Intent intent=new Intent(MainActivity.this, SelectLearnPlan.class);
+        Intent intent=new Intent(MainActivity.this, SelectThemeToLearn.class);
         startActivity(intent);
     }
 

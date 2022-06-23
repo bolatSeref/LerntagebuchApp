@@ -6,24 +6,14 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.creactivestudio.lerntagebuchapp.R;
-
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYourSelfRvAdapter.EvaluateViewHolder> {
 
@@ -86,17 +76,17 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
                 if(radioGroup.getCheckedRadioButtonId()==R.id.radioButtonRed)
                 {
                     editor.putString(themeList.get(holder.getAdapterPosition()),"red"); // Aktualiesiere Sharedpref.
-                    editor.commit();// Speicher die Änderungen
+                    editor.apply();// Speicher die Änderungen
                 }
                 else if (radioGroup.getCheckedRadioButtonId()==R.id.radioButtonYellow)
                 {
                     editor.putString(themeList.get(holder.getAdapterPosition()),"yellow");// Aktualiesiere Sharedpref.
-                    editor.commit();// Speicher die Änderungen
+                    editor.apply();// Speicher die Änderungen
                 }
                 else if(radioGroup.getCheckedRadioButtonId()==R.id.radioButtonGreen)
                 {
                     editor.putString(themeList.get(holder.getAdapterPosition()),"green");// Aktualiesiere Sharedpref.
-                    editor.commit();// Speicher die Änderungen
+                    editor.apply();// Speicher die Änderungen
                 }
             }
         });
@@ -105,7 +95,7 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
     /**
      *
      * Wir definieren wie viele Objekt in Recycler View sein muss. Weil wir die Daten aus der Array bekommen, geben wir lenght der Array ein.
-     * @return
+     * @return size
      */
     @Override
     public int getItemCount() {

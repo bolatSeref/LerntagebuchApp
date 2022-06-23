@@ -1,4 +1,4 @@
-package com.creactivestudio.lerntagebuchapp.sqlite;
+package com.creactivestudio.lerntagebuchapp.note;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,16 +6,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
-import com.creactivestudio.lerntagebuchapp.note.UpdateNoteActivity;
-import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
-
-import java.util.HashMap;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

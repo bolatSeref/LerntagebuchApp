@@ -1,4 +1,4 @@
-package com.creactivestudio.lerntagebuchapp;
+package com.creactivestudio.lerntagebuchapp.goals;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,15 +6,16 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.creactivestudio.lerntagebuchapp.LearningTimerActivity;
+import com.creactivestudio.lerntagebuchapp.R;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
         holder.themeCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, StatusActivity.class);
+                Intent intent=new Intent(context, LearningTimerActivity.class);
                 intent.putExtra("goalTime", String.valueOf(goalTime.get(position)));
                 intent.putExtra("goalId", String.valueOf(goalId.get(position)));
                 context.startActivity(intent);

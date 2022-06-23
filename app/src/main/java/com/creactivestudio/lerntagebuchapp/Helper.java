@@ -1,4 +1,4 @@
-package com.creactivestudio;
+package com.creactivestudio.lerntagebuchapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,10 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
-
-import com.creactivestudio.lerntagebuchapp.MainActivity;
-import com.creactivestudio.lerntagebuchapp.R;
-
 
 
 public class Helper {

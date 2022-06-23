@@ -26,18 +26,6 @@
             android:padding="20sp">
 
             <TextView
-                android:id="@+id/tvGoalId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="51dp"
-                android:text="id"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/tvGoalTheme"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -59,16 +47,6 @@
                 android:text="note text"
                 app:layout_constraintStart_toStartOf="@+id/tvGoalTheme"
                 app:layout_constraintTop_toBottomOf="@+id/tvGoalTheme" />
-
-            <ImageView
-                android:id="@+id/imgUpdateGoal"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@+id/tvGoalTime"
-                app:layout_constraintTop_toBottomOf="@+id/tvGoalTime"
-                app:srcCompat="@drawable/icon_write" />
 
             <ImageView
                 android:id="@+id/imgDeleteGoal"

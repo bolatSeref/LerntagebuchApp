@@ -1,23 +1,17 @@
 package com.creactivestudio.lerntagebuchapp.note;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
-import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 
 public class UpdateNoteActivity extends AppCompatActivity {
 
-    EditText etNoteTitleUpdate, etNoteTextUpdate;
-     String noteId, noteTitle, noteText;
+    private EditText etNoteTitleUpdate, etNoteTextUpdate;
+    private String noteId, noteTitle, noteText;
     Helper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +39,9 @@ public class UpdateNoteActivity extends AppCompatActivity {
         databaseHelper.updateData(noteId, noteTitle,noteText);
     }
 
+    /**
+     * Initialiesiere Views usw.
+     */
     public void init()
     {
         etNoteTextUpdate=findViewById(R.id.etNoteTextUpdate);
@@ -52,6 +49,9 @@ public class UpdateNoteActivity extends AppCompatActivity {
         helper=new Helper(this);
      }
 
+    /**
+     * Nim die daten durch Intent, um die richtige Notizen aktualiesieren zu können.
+     */
     public void getAndSetIntentData() {
         if(getIntent().hasExtra("noteId") && getIntent().hasExtra("noteTitle") && getIntent().hasExtra("noteText"))
         {
@@ -68,9 +68,5 @@ public class UpdateNoteActivity extends AppCompatActivity {
         }
     }
 
-    public void confirmDialog ()
-    {
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
 
-    }
 }

@@ -9,11 +9,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
-import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

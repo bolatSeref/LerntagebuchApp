@@ -11,14 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.creactivestudio.Helper;
+import com.creactivestudio.lerntagebuchapp.Helper;
 import com.creactivestudio.lerntagebuchapp.R;
-import com.creactivestudio.lerntagebuchapp.sqlite.DatabaseHelper;
 
 import java.util.ArrayList;
 
@@ -30,6 +28,14 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
     private ArrayList noteId, noteTitle, noteText;
 
 
+    /**
+     * Constructor
+     * @param activity
+     * @param context
+     * @param noteId  Note ID
+     * @param noteTitle Note Überschrift
+     * @param noteText  Note text
+     */
     public CustomNoteRvAdapter(Activity activity, Context context, ArrayList noteId, ArrayList noteTitle, ArrayList noteText)
     {
         this.activity=activity;
@@ -65,6 +71,8 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
             }
         });
+
+        // Um den Note per andere installierte Apps teilen zu können.
         holder.imgShareNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +85,8 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
             }
         });
+
+        // Löscht den Note
         holder.imgDeleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +98,9 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
             }
         });
+
+        // Aktualiesiere den Note aber in Update Note Activity, deswegen schicken wir
+        // benötigte Daten.
         holder.imgUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,11 +115,18 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
     }
 
+    /**
+     * Beschreibt die Anzahl von Views, die in Recycler View angezeigt werden.
+     * @return size
+     */
     @Override
     public int getItemCount() {
         return noteId.size();
     }
 
+    /**
+     * Initialisiere die Views
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView noteId, noteTitle, noteText;
         ImageView imgUpdate, imgDeleteNote, imgShareNote, imgCopyNote;
@@ -114,6 +134,7 @@ public class CustomNoteRvAdapter extends RecyclerView.Adapter <CustomNoteRvAdapt
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             noteId=itemView.findViewById(R.id.tvGoalId);
             noteTitle=itemView.findViewById(R.id.tvGoalTheme);
             noteText=itemView.findViewById(R.id.tvGoalTime);

@@ -16,11 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.creactivestudio.Helper;
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
 import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
-public class StatusActivity extends AppCompatActivity {
+public class LearningTimerActivity extends AppCompatActivity {
 
     private NotificationManager mNotificationManager;
     Helper helper;
@@ -162,7 +161,7 @@ public class StatusActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable(){
                     @Override
                     public void run(){
-                        startActivity(new Intent(StatusActivity.this, MainActivity.class));
+                        startActivity(new Intent(LearningTimerActivity.this, MainActivity.class));
                     }
                 }, 2000);
 
@@ -308,7 +307,7 @@ public class StatusActivity extends AppCompatActivity {
 
     public void goToNotes (View view)
     {
-        Intent intent =new Intent(StatusActivity.this, ViewAllNotesActivity.class);
+        Intent intent =new Intent(LearningTimerActivity.this, ViewAllNotesActivity.class);
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package com.creactivestudio.lerntagebuchapp;
+package com.creactivestudio.lerntagebuchapp.goals;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.database.Cursor;
 import android.os.Bundle;
 
-import com.creactivestudio.Helper;
-import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
+import com.creactivestudio.lerntagebuchapp.Helper;
+import com.creactivestudio.lerntagebuchapp.R;
 
 import java.util.ArrayList;
 
-public class SelectLearnPlan extends AppCompatActivity {
+public class SelectThemeToLearn extends AppCompatActivity {
 
     Helper helper;
     AllThemesRecyclerViewAdapter allThemesRecyclerViewAdapter;
@@ -30,7 +30,7 @@ public class SelectLearnPlan extends AppCompatActivity {
 
         storeDataInArrays(); // Wir speichern alle Daten von Sqlite zu oben besreibene Array Lists ein.
         rvAllThemes.setAdapter(allThemesRecyclerViewAdapter);
-        rvAllThemes.setLayoutManager(new GridLayoutManager(SelectLearnPlan.this, 2));
+        rvAllThemes.setLayoutManager(new GridLayoutManager(SelectThemeToLearn.this, 2));
 
     }
 
@@ -39,7 +39,7 @@ public class SelectLearnPlan extends AppCompatActivity {
      */
     public void init()
     {
-        databaseHelperLearningGoals=new DatabaseHelperLearningGoals(SelectLearnPlan.this);
+        databaseHelperLearningGoals=new DatabaseHelperLearningGoals(SelectThemeToLearn.this);
         rvAllThemes=findViewById(R.id.rvAllThemes);
         helper=new Helper(this);
         goalIdList =new ArrayList<>();

@@ -28,22 +28,16 @@
             android:name=".evaluate_your_self.EvaluateYourSelfActivity"
             android:exported="false" />
         <activity
-            android:name=".StatisticsActivity"
+            android:name=".LearningTimerActivity"
             android:exported="false" />
         <activity
-            android:name=".NotizenActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StatusActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SelectLearnPlan"
+            android:name=".goals.SelectThemeToLearn"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateStudyPlan"
+            android:name=".goals.CreateStudyPlan"
             android:exported="false"
             android:label="@string/erstelle_deinen_lernplan"
             android:parentActivityName=".WelcomeScreen"/>
