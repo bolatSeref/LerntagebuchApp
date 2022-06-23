@@ -30,7 +30,6 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
     private Context context;
     Activity activity;
     private List<String> themeList;
-    final String radioGroupMapKey="radio_group_map_key";
 
     /**
      * Constructor bekommt diese Parametern
@@ -86,18 +85,18 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(radioGroup.getCheckedRadioButtonId()==R.id.radioButtonRed)
                 {
-                    editor.putString(themeList.get(holder.getAdapterPosition()),"red");
-                    editor.commit();
+                    editor.putString(themeList.get(holder.getAdapterPosition()),"red"); // Aktualiesiere Sharedpref.
+                    editor.commit();// Speicher die Änderungen
                 }
                 else if (radioGroup.getCheckedRadioButtonId()==R.id.radioButtonYellow)
                 {
-                    editor.putString(themeList.get(holder.getAdapterPosition()),"yellow");
-                    editor.commit();
+                    editor.putString(themeList.get(holder.getAdapterPosition()),"yellow");// Aktualiesiere Sharedpref.
+                    editor.commit();// Speicher die Änderungen
                 }
                 else if(radioGroup.getCheckedRadioButtonId()==R.id.radioButtonGreen)
                 {
-                    editor.putString(themeList.get(holder.getAdapterPosition()),"green");
-                    editor.commit();
+                    editor.putString(themeList.get(holder.getAdapterPosition()),"green");// Aktualiesiere Sharedpref.
+                    editor.commit();// Speicher die Änderungen
                 }
             }
         });

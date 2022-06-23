@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.creactivestudio.lerntagebuchapp.R;
 
@@ -20,10 +17,9 @@ import java.util.List;
  */
 public class EvaluateYourSelfActivity extends AppCompatActivity {
 
-    EvaluateYourSelfRvAdapter evaluateYourSelfRvAdapter;
-    private ArrayList themeList;
+    private EvaluateYourSelfRvAdapter evaluateYourSelfRvAdapter;
     private RecyclerView rvEvaluation;
-    private List<String> testList;
+    private List<String> themenList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +31,7 @@ public class EvaluateYourSelfActivity extends AppCompatActivity {
         setThemesArrayFromXML(); // Hole Mathe Themen aus XML Datei ein
 
         evaluateYourSelfRvAdapter=new EvaluateYourSelfRvAdapter(this, this
-        , testList); // Recycler View Adapter ist initialisiert
+        , themenList); // Recycler View Adapter ist initialisiert
         rvEvaluation.setAdapter(evaluateYourSelfRvAdapter);
         rvEvaluation.setLayoutManager(new LinearLayoutManager(this));
 
@@ -46,16 +42,15 @@ public class EvaluateYourSelfActivity extends AppCompatActivity {
      * Initialisiere Views usw.
      */
     public void init() {
-        rvEvaluation = findViewById(R.id.rvEvaluation);
-        themeList = new ArrayList();
-        testList=new ArrayList<>();
+        rvEvaluation = findViewById(R.id.rvEvaluation); // Recyclerview
+        themenList =new ArrayList<>();
     }
 
     /**
-     *
+     *  Nim die Mathe 2 Themen vom XML und set die Daten als ein List
      */
     public void setThemesArrayFromXML()
     {
-       testList= Arrays.asList(getResources().getStringArray(R.array.mathe_themen_without_title));
+       themenList = Arrays.asList(getResources().getStringArray(R.array.mathe_themen_without_title));
     }
 }

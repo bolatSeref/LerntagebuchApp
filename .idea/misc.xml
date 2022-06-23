@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.325" />
         <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.156875" />
         <entry key="app/src/main/res/drawable/btn_start.xml" value="0.193125" />
         <entry key="app/src/main/res/drawable/custom_btn_radio.xml" value="0.232421875" />
