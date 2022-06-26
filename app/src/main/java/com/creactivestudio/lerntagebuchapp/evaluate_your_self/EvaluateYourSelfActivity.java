@@ -1,5 +1,6 @@
 package com.creactivestudio.lerntagebuchapp.evaluate_your_self;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,10 @@ public class EvaluateYourSelfActivity extends AppCompatActivity {
         rvEvaluation.setAdapter(evaluateYourSelfRvAdapter);
         rvEvaluation.setLayoutManager(new LinearLayoutManager(this));
 
+
+        // Ändere ActionBar Name
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setTitle("Selbsteinschätzung");
 
     }
 

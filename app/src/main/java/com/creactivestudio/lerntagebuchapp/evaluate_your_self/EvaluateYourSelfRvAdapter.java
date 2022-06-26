@@ -61,6 +61,7 @@ public class EvaluateYourSelfRvAdapter extends RecyclerView.Adapter<EvaluateYour
                 else if(prefString.equals("yellow"))
                 {
                     holder.radioButtonYellow.setChecked(true);
+
                 }
                 else if(prefString.equals("green"))
                 {

@@ -19,11 +19,11 @@ import java.util.ArrayList;
 public class ViewAllNotesActivity extends AppCompatActivity {
 
     private CustomNoteRvAdapter customNoteRvAdapter;
-    RecyclerView rvAllNotes;
-    FloatingActionButton btnAddNote;
+    private RecyclerView rvAllNotes;
+    private FloatingActionButton btnAddNote;
     Helper helper;
-    DatabaseHelper databaseHelper;
-    ArrayList<String> noteId, noteTitle, noteText;
+    private DatabaseHelper databaseHelper;
+    private ArrayList<String> noteId, noteTitle, noteText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class ViewAllNotesActivity extends AppCompatActivity {
         customNoteRvAdapter=new CustomNoteRvAdapter(ViewAllNotesActivity.this, this, noteId, noteTitle, noteText);
         rvAllNotes.setAdapter(customNoteRvAdapter);
         rvAllNotes.setLayoutManager(new LinearLayoutManager(ViewAllNotesActivity.this));
+
 
         btnAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,14 +62,14 @@ public class ViewAllNotesActivity extends AppCompatActivity {
         rvAllNotes=findViewById(R.id.rvNotes);
         btnAddNote=findViewById(R.id.btnAddNote);
         databaseHelper=new DatabaseHelper(ViewAllNotesActivity.this);
-        noteId=new ArrayList<>();
-        noteTitle=new ArrayList<>();
-        noteText=new ArrayList<>();
-
-
-
+        noteId=new ArrayList<>(); // Notizen ID
+        noteTitle=new ArrayList<>(); // Notizen Title
+        noteText=new ArrayList<>(); // Notizen Text
     }
 
+    /**
+     * Speicher alle Daten vom SQLite zu ArrayListen
+     */
     public void storeDataInArrays ()
     {
         Cursor cursor= databaseHelper.readAllData();

@@ -9,6 +9,14 @@
         <entry key="app/src/main/res/drawable/custom_btn_radio.xml" value="0.232421875" />
         <entry key="app/src/main/res/drawable/custom_btn_radio_orange.xml" value="0.132421875" />
         <entry key="app/src/main/res/drawable/custom_btn_radio_red.xml" value="0.132421875" />
+        <entry key="app/src/main/res/drawable/icon_check_orange_full.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/icon_check_orange_half.xml" value="0.232421875" />
+        <entry key="app/src/main/res/drawable/icon_check_red_full.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/icon_check_red_half.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/icon_circle_check_half_green.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/icon_circle_orange_half.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/icon_circle_red_half_minus.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/icon_write.xml" value="0.184375" />
         <entry key="app/src/main/res/drawable/spinner.xml" value="0.23125" />
         <entry key="app/src/main/res/drawable/spinner_item.xml" value="0.23125" />
         <entry key="app/src/main/res/drawable/start_btn.xml" value="0.193125" />
@@ -38,7 +46,7 @@
         <entry key="app/src/main/res/layout/layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/note_rv_item.xml" value="0.38283378746594005" />
         <entry key="app/src/main/res/layout/rv_all_themes_item_row.xml" value="0.19101123595505617" />
-        <entry key="app/src/main/res/layout/rv_evaluate_your_self_item_row.xml" value="0.13719512195121952" />
+        <entry key="app/src/main/res/layout/rv_evaluate_your_self_item_row.xml" value="0.25" />
         <entry key="app/src/main/res/layout/spinner.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/ziel_rv_item.xml" value="0.2203125" />
       </map>

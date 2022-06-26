@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     Helper helper;
-    private static final String DATABASE_NAME = "LernTagebuch.db";
+    private static final String DATABASE_NAME = "Notizen.db";
     private static final int DATABASE_VERSION= 1;
     private static final String TABLE_NAME = "notes";
     private static final String COLUMN_ID = "_id";

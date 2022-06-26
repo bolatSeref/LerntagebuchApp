@@ -1,5 +1,6 @@
 package com.creactivestudio.lerntagebuchapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -59,24 +60,19 @@ public class LearningTimerActivity extends AppCompatActivity {
 
         init(); // Initialition
         
-        timerStart();
+        timerStart(); // Starte den Timer
         getGoalTime();
-       // imgDoNotDisturbOff.setVisibility(View.INVISIBLE);
-        
+
+        // Ändere ActionBar Name, Informiere den Benutzer über sein Ziel
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setTitle("Du lernst: " + getGoalTheme() + " - Dein Ziel ist: " + getGoalTime() + " Minuten");
 
     }
-
-    public void stopTheTimer () {
-
-    }
-    
 
     public void timerStart()
     {
         startTime=System.currentTimeMillis(); //  Beginnt mit System Time
         timerHandler.postDelayed(timerRunnable,0);
-        
-
     }
 
 
@@ -88,8 +84,18 @@ public class LearningTimerActivity extends AppCompatActivity {
     {
         Intent intent=getIntent();
         String goalTime=intent.getStringExtra("goalTime");
-    //    Toast.makeText(this, goalTime, Toast.LENGTH_SHORT).show();
         return Integer.parseInt(goalTime);
+    }
+
+    /**
+     * Bekomme Goaltheme vom intent
+     * @return
+     */
+    public String getGoalTheme ()
+    {
+        Intent intent=getIntent();
+        String goalTheme=intent.getStringExtra("goalTheme");
+        return goalTheme;
     }
 
     /**
@@ -114,15 +120,12 @@ public class LearningTimerActivity extends AppCompatActivity {
 
     public void resumeTimer (View view)
     {
-       // startTime=startTime+(System.currentTimeMillis() - startTime);
         timerHandler.postDelayed(timerRunnable,0);
-
         timerPaused=false;
-
     }
 
     /**
-     * Speiche die Zeit, die den Benutzer gelernt hat.
+     * Speiche die Zeit, die der Benutzer gelernt hat.
      * @param view
      */
     public void saveTime (View view)
@@ -130,23 +133,20 @@ public class LearningTimerActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String goalId=intent.getStringExtra("goalId");
 
-        int learnTime= (int) (millis/1000)/60;
-        if(learnTime<=0)
+        int learnTime= (int) (millis/1000)/60; // Gelernte Zeit in Minuten
+        if(learnTime<=0) // Der Benutzer hat noch nicht genügend gelernt.
         {
             helper.showToast(getString(R.string.du_musst_mindestens_1_min_lernen_um_zu_speichern), Helper.TOAST_MESSAGE_TYPE_ERROR);
         }
-        else {
+        else { // Der Benutzer hat genügend gelernt, speicher die Daten
             DatabaseHelperLearningGoals databaseHelperLearningGoals = new DatabaseHelperLearningGoals(this);
             databaseHelperLearningGoals.saveTimeToSql(goalId, learnTime);
-// TODO: 06.06.22 kaydettikten sonra timer durdur
 
             Cursor cursor = databaseHelperLearningGoals.readAllData();
             if (cursor.getCount() == 0) {
                 helper.showToast(getString(R.string.no_data), Helper.TOAST_MESSAGE_TYPE_ERROR);
             } else {
                 while (cursor.moveToNext()) {
-                    // Toast.makeText(this, cursor.getString(0), Toast.LENGTH_SHORT).show();
-                    //   Toast.makeText(this, cursor.getString(1), Toast.LENGTH_SHORT).show();
                     Toast.makeText(this, cursor.getString(3), Toast.LENGTH_SHORT).show();
                     System.out.println(cursor.getString(3));
                     System.out.println(cursor.getString(2));
@@ -157,7 +157,7 @@ public class LearningTimerActivity extends AppCompatActivity {
                 stopTimer(view);
                 timerHandler.removeCallbacks(timerRunnable);//stop timer
 
-                Handler handler = new Handler(); // wait 2 seconds and then go to main activity
+                Handler handler = new Handler(); // Warte 2 Sekunden dann geh weiter zu MainActivity
                 handler.postDelayed(new Runnable(){
                     @Override
                     public void run(){
@@ -170,10 +170,6 @@ public class LearningTimerActivity extends AppCompatActivity {
         }
     }
 
-    public void getData ()
-    {
-
-    }
 
     /**
      * Benutzer kann der Timer pausieren:
@@ -182,10 +178,7 @@ public class LearningTimerActivity extends AppCompatActivity {
     public void pauseTimer(View view)
     {
         timerHandler.removeCallbacks(timerRunnable);
-
         timerPaused=true;
-       // timerHandler.removeCallbacks(timerRunnable);
-
     }
 
     /**
@@ -263,27 +256,7 @@ public class LearningTimerActivity extends AppCompatActivity {
         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
         rootLayout.setBackgroundColor(Color.BLACK);
         helper.showToast(getString(R.string.nicht_stoeren_modus_an),Helper.TOAST_MESSAGE_TYPE_SUCCESS);
-        tvTimer.setTextColor(Color.WHITE);
-       // imgDoNotDisturb.setImageResource(R.drawable.icon_do_not_disturb_on);
-      //  imgDoNotDisturbOff.setVisibility(View.INVISIBLE);
 
-        // turn off dnd mode
-
-        //NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        //mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_NONE);
-// TODO: 12.05.22
-
-
-        /*
-        int currentTimeInMinutes=(int) (System.currentTimeMillis()/(1000*60))%60;
-        int startTimeInMinutes=(int) (startTime/(1000*60))%60;
-        
-        if(currentTimeInMinutes-startTimeInMinutes>getGoalTime())
-        {
-            Toast.makeText(this, "Du hast dein Ziel erreicht", Toast.LENGTH_SHORT).show();
-        }
-        else Toast.makeText(this, "Du hast dein Ziel noch nicht erreicht", Toast.LENGTH_SHORT).show();
-        */
     }
 
     /**
@@ -296,7 +269,6 @@ public class LearningTimerActivity extends AppCompatActivity {
         rootLayout.setBackgroundColor(Color.WHITE);
         tvTimer.setTextColor(Color.BLACK);
         helper.showToast(getString(R.string.nicht_stoeren_modus_aus), Helper.TOAST_MESSAGE_TYPE_ERROR);
-       // imgDoNotDisturb.setVisibility(View.INVISIBLE);
     }
 
 

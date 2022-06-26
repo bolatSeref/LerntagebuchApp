@@ -21,7 +21,7 @@ public class UpdateNoteActivity extends AppCompatActivity {
         init();
         getAndSetIntentData();
 
-        // to change Actionbar name
+        // Ändere ActionBar Name
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Update: " + noteTitle);
 

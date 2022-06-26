@@ -63,6 +63,7 @@ public class AllThemesRecyclerViewAdapter extends RecyclerView.Adapter<AllThemes
                 Intent intent=new Intent(context, LearningTimerActivity.class);
                 intent.putExtra("goalTime", String.valueOf(goalTime.get(position)));
                 intent.putExtra("goalId", String.valueOf(goalId.get(position)));
+                intent.putExtra("goalTheme", String.valueOf(goalTheme.get(position)));
                 context.startActivity(intent);
             }
         });
