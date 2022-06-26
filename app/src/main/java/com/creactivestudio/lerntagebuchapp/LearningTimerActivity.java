@@ -11,8 +11,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +24,15 @@ import com.creactivestudio.lerntagebuchapp.note.ViewAllNotesActivity;
 
 public class LearningTimerActivity extends AppCompatActivity {
 
+    private Chronometer chronometer;
+    private long pauseOffset;
+    private boolean running;
     private NotificationManager mNotificationManager;
     Helper helper;
     private boolean timerPaused;
     ImageView imgDoNotDisturb, imgDoNotDisturbOff;
     long startTime=0;
     long millis;
-    TextView tvTimer; // Timer ist angezeigt.
     ConstraintLayout rootLayout;
     Handler timerHandler=new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -44,7 +48,7 @@ public class LearningTimerActivity extends AppCompatActivity {
             // Wenn der Benutzer sein Ziel erreicht hat dann informiere den Benutzer
             if (goalTime==(millis/1000)/60) helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
 
-                tvTimer.setText(String.format("%d:%02d", minutes, seconds));
+                //tvTimer.setText(String.format("%d:%02d", minutes, seconds));
 
                 timerHandler.postDelayed(this, 500);
 
@@ -59,7 +63,24 @@ public class LearningTimerActivity extends AppCompatActivity {
 
 
         init(); // Initialition
-        
+        long goalTime=getGoalTime();
+
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                /*
+                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) / 60 > goalTime) {
+                    chronometer.setBase(SystemClock.elapsedRealtime());
+                    helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);                }
+
+                 */
+            }
+
+
+        });
+
+
+
         timerStart(); // Starte den Timer
         getGoalTime();
 
@@ -67,14 +88,69 @@ public class LearningTimerActivity extends AppCompatActivity {
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Du lernst: " + getGoalTheme() + " - Dein Ziel ist: " + getGoalTime() + " Minuten");
 
+
+
+
+    }
+
+    /**
+     * Initialition von Views
+     */
+    public void init()
+    {
+
+        chronometer = findViewById(R.id.chronometer);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+
+
+        helper=new Helper(this);
+        rootLayout=findViewById(R.id.rootLayout);
+        mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        imgDoNotDisturb=findViewById(R.id.imgDoNotDisturbOff);
+        imgDoNotDisturbOff=findViewById(R.id.imgDoNotDisturbOn);
     }
 
     public void timerStart()
     {
-        startTime=System.currentTimeMillis(); //  Beginnt mit System Time
-        timerHandler.postDelayed(timerRunnable,0);
+        if (!running) {
+            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+            chronometer.start();
+            running = true;
+        }
     }
 
+
+    /**
+     * Benutzer kann den Timer stoppen.
+     * @param view
+     */
+    public void stopTimer (View view)
+    {
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        pauseOffset = 0;
+    }
+
+    /**
+     * Benutzer kann der Timer pausieren:
+     * @param view
+     */
+    public void pauseTimer(View view)
+    {
+        if (running) {
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+            running = false;
+        }
+    }
+
+    public void resumeTimer (View view)
+    {
+        if (!running) {
+            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+            chronometer.start();
+            running = true;
+        }
+    }
 
     /**
      * Bekomme Goalzeit vom intent
@@ -98,31 +174,6 @@ public class LearningTimerActivity extends AppCompatActivity {
         return goalTheme;
     }
 
-    /**
-     * Benutzer kann den Timer stoppen.
-     * @param view
-     */
-    public void stopTimer (View view)
-    {
-        startTime=System.currentTimeMillis();
-    }
-    
-
-    /**
-     * Benutzer startet den Timer.
-     * @param view
-     */
-    public void startTimer (View view)
-    {
-        startTime=System.currentTimeMillis();
-        timerHandler.postDelayed(timerRunnable,0);
-    }
-
-    public void resumeTimer (View view)
-    {
-        timerHandler.postDelayed(timerRunnable,0);
-        timerPaused=false;
-    }
 
     /**
      * Speiche die Zeit, die der Benutzer gelernt hat.
@@ -171,28 +222,7 @@ public class LearningTimerActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Benutzer kann der Timer pausieren:
-     * @param view
-     */
-    public void pauseTimer(View view)
-    {
-        timerHandler.removeCallbacks(timerRunnable);
-        timerPaused=true;
-    }
 
-    /**
-     * Initialition von Views
-     */
-    public void init()
-    {
-        helper=new Helper(this);
-        tvTimer=findViewById(R.id.tvTimer);
-        rootLayout=findViewById(R.id.rootLayout);
-        mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        imgDoNotDisturb=findViewById(R.id.imgDoNotDisturbOff);
-        imgDoNotDisturbOff=findViewById(R.id.imgDoNotDisturbOn);
-    }
 
     protected void changeInterruptionFiler(int interruptionFilter) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // If api level minimum 23
@@ -267,7 +297,7 @@ public class LearningTimerActivity extends AppCompatActivity {
     {
         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
         rootLayout.setBackgroundColor(Color.WHITE);
-        tvTimer.setTextColor(Color.BLACK);
+        //tvTimer.setTextColor(Color.BLACK);
         helper.showToast(getString(R.string.nicht_stoeren_modus_aus), Helper.TOAST_MESSAGE_TYPE_ERROR);
     }
 
