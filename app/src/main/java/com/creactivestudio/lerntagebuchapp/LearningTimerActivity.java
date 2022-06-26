@@ -16,7 +16,6 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creactivestudio.lerntagebuchapp.goals.DatabaseHelperLearningGoals;
@@ -68,21 +67,13 @@ public class LearningTimerActivity extends AppCompatActivity {
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                /*
-                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) / 60 > goalTime) {
-                    chronometer.setBase(SystemClock.elapsedRealtime());
+                if (getElapsedTime() == goalTime) { // Wenn der Benutzer sein Ziel erreicht hat dann informiere ihn.
                     helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);                }
-
-                 */
             }
-
-
         });
 
-
-
         timerStart(); // Starte den Timer
-        getGoalTime();
+     //   getGoalTime();
 
         // Ändere ActionBar Name, Informiere den Benutzer über sein Ziel
         ActionBar actionBar=getSupportActionBar();
@@ -91,6 +82,12 @@ public class LearningTimerActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private int getElapsedTime() {
+        long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+        int elapsedTimeInMinutes= (int) ((elapsedMillis/1000)/60);
+        return elapsedTimeInMinutes;
     }
 
     /**
@@ -181,10 +178,11 @@ public class LearningTimerActivity extends AppCompatActivity {
      */
     public void saveTime (View view)
     {
+
         Intent intent=getIntent();
         String goalId=intent.getStringExtra("goalId");
 
-        int learnTime= (int) (millis/1000)/60; // Gelernte Zeit in Minuten
+        int learnTime= getElapsedTime(); // Gelernte Zeit in Minuten
         if(learnTime<=0) // Der Benutzer hat noch nicht genügend gelernt.
         {
             helper.showToast(getString(R.string.du_musst_mindestens_1_min_lernen_um_zu_speichern), Helper.TOAST_MESSAGE_TYPE_ERROR);
@@ -218,7 +216,9 @@ public class LearningTimerActivity extends AppCompatActivity {
 
 
             }
-        }
+                   }
+
+
     }
 
 
