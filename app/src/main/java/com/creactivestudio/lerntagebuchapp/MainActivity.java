@@ -67,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         tvCongratulation=findViewById(R.id.tvCongratulation);
     }
 
+    /**
+     * Setze Werte für ProgressBar
+     * @param maxValue Ziel der Benutzer
+     * @param progressValue  Die Zeit, die der Benutzer schon gelernt hat
+     */
     public void setProgressBarWeeklyGoals (int maxValue, int progressValue)
     {
         progressBarWeeklyGoals.setMax(maxValue);
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *  Informiere den Benutzer über seine Fortschrifte
+     *  Informiere den Benutzer über seine Fortschritte
      */
     public void setTextViews()
     {

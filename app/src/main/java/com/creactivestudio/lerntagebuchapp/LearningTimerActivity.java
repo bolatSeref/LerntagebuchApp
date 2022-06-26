@@ -28,33 +28,9 @@ public class LearningTimerActivity extends AppCompatActivity {
     private boolean running;
     private NotificationManager mNotificationManager;
     Helper helper;
-    private boolean timerPaused;
     ImageView imgDoNotDisturb, imgDoNotDisturbOff;
-    long startTime=0;
-    long millis;
     ConstraintLayout rootLayout;
-    Handler timerHandler=new Handler();
-    Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
-            seconds = seconds % 60;
-            long goalTime=getGoalTime();
-           // goalTime=goalTime*1000*60;
 
-            // Wenn der Benutzer sein Ziel erreicht hat dann informiere den Benutzer
-            if (goalTime==(millis/1000)/60) helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
-
-                //tvTimer.setText(String.format("%d:%02d", minutes, seconds));
-
-                timerHandler.postDelayed(this, 500);
-
-
-
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,53 +38,55 @@ public class LearningTimerActivity extends AppCompatActivity {
 
 
         init(); // Initialition
-        long goalTime=getGoalTime();
+        long goalTime = getGoalTime();
 
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 if (getElapsedTime() == goalTime) { // Wenn der Benutzer sein Ziel erreicht hat dann informiere ihn.
-                    helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);                }
+                    helper.showToast(getString(R.string.du_hast_dein_ziel_erreicht), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
+                }
             }
         });
 
         timerStart(); // Starte den Timer
-     //   getGoalTime();
 
         // Ändere ActionBar Name, Informiere den Benutzer über sein Ziel
-        ActionBar actionBar=getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Du lernst: " + getGoalTheme() + " - Dein Ziel ist: " + getGoalTime() + " Minuten");
-
-
 
 
     }
 
+    /**
+     * Um zu gelernte Zeit zu bekommen
+     * @return gelernte Zeit in Minuten
+     */
     private int getElapsedTime() {
         long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
-        int elapsedTimeInMinutes= (int) ((elapsedMillis/1000)/60);
+        int elapsedTimeInMinutes = (int) ((elapsedMillis / 1000) / 60); // Zunächst in Sekunden, dann in Minuten
         return elapsedTimeInMinutes;
     }
 
     /**
      * Initialition von Views
      */
-    public void init()
-    {
+    public void init() {
 
         chronometer = findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
 
-
-        helper=new Helper(this);
-        rootLayout=findViewById(R.id.rootLayout);
+        helper = new Helper(this);
+        rootLayout = findViewById(R.id.rootLayout);
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        imgDoNotDisturb=findViewById(R.id.imgDoNotDisturbOff);
-        imgDoNotDisturbOff=findViewById(R.id.imgDoNotDisturbOn);
+        imgDoNotDisturb = findViewById(R.id.imgDoNotDisturbOff);
+        imgDoNotDisturbOff = findViewById(R.id.imgDoNotDisturbOn);
     }
 
-    public void timerStart()
-    {
+    /**
+     * Starte den Timer
+     */
+    public void timerStart() {
         if (!running) {
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
             chronometer.start();
@@ -118,21 +96,21 @@ public class LearningTimerActivity extends AppCompatActivity {
 
 
     /**
-     * Benutzer kann den Timer stoppen.
+     * Stoppe den Timer.
+     *
      * @param view
      */
-    public void stopTimer (View view)
-    {
+    public void stopTimer(View view) {
         chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset = 0;
     }
 
     /**
-     * Benutzer kann der Timer pausieren:
+     * Pausiere den Timer
+     *
      * @param view
      */
-    public void pauseTimer(View view)
-    {
+    public void pauseTimer(View view) {
         if (running) {
             chronometer.stop();
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
@@ -140,8 +118,11 @@ public class LearningTimerActivity extends AppCompatActivity {
         }
     }
 
-    public void resumeTimer (View view)
-    {
+    /**
+     * Setze den Timer fort.
+     * @param view
+     */
+    public void resumeTimer(View view) {
         if (!running) {
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
             chronometer.start();
@@ -150,44 +131,43 @@ public class LearningTimerActivity extends AppCompatActivity {
     }
 
     /**
-     * Bekomme Goalzeit vom intent
+     * Bekomme Aktuell gelernte Zielzeit vom intent
+     *
      * @return
      */
-    public int getGoalTime () 
-    {
-        Intent intent=getIntent();
-        String goalTime=intent.getStringExtra("goalTime");
+    public int getGoalTime() {
+        Intent intent = getIntent();
+        String goalTime = intent.getStringExtra("goalTime");
         return Integer.parseInt(goalTime);
     }
 
     /**
-     * Bekomme Goaltheme vom intent
+     * Bekomme Aktuell gelernte Zieltheme vom intent
+     *
      * @return
      */
-    public String getGoalTheme ()
-    {
-        Intent intent=getIntent();
-        String goalTheme=intent.getStringExtra("goalTheme");
+    public String getGoalTheme() {
+        Intent intent = getIntent();
+        String goalTheme = intent.getStringExtra("goalTheme");
         return goalTheme;
     }
 
 
     /**
-     * Speiche die Zeit, die der Benutzer gelernt hat.
+     * Speicher die Zeit, die der Benutzer gelernt hat.
+     *
      * @param view
      */
-    public void saveTime (View view)
-    {
+    public void saveTime(View view) {
 
-        Intent intent=getIntent();
-        String goalId=intent.getStringExtra("goalId");
+        Intent intent = getIntent();
+        String goalId = intent.getStringExtra("goalId");
 
-        int learnTime= getElapsedTime(); // Gelernte Zeit in Minuten
-        if(learnTime<=0) // Der Benutzer hat noch nicht genügend gelernt.
+        int learnTime = getElapsedTime(); // Gelernte Zeit in Minuten
+        if (learnTime <= 0) // Der Benutzer hat noch nicht genügend gelernt.
         {
             helper.showToast(getString(R.string.du_musst_mindestens_1_min_lernen_um_zu_speichern), Helper.TOAST_MESSAGE_TYPE_ERROR);
-        }
-        else { // Der Benutzer hat genügend gelernt, speicher die Daten
+        } else { // Der Benutzer hat genügend gelernt, speicher die Daten
             DatabaseHelperLearningGoals databaseHelperLearningGoals = new DatabaseHelperLearningGoals(this);
             databaseHelperLearningGoals.saveTimeToSql(goalId, learnTime);
 
@@ -204,26 +184,25 @@ public class LearningTimerActivity extends AppCompatActivity {
                 }
                 helper.showToast(getString(R.string.dein_lern_zeit_ist_gespeichert) + "\n\nDu hast " + learnTime + " Minuten gelernt.", Helper.TOAST_MESSAGE_TYPE_SUCCESS);
                 stopTimer(view);
-                timerHandler.removeCallbacks(timerRunnable);//stop timer
 
                 Handler handler = new Handler(); // Warte 2 Sekunden dann geh weiter zu MainActivity
-                handler.postDelayed(new Runnable(){
+                handler.postDelayed(new Runnable() {
                     @Override
-                    public void run(){
+                    public void run() {
                         startActivity(new Intent(LearningTimerActivity.this, MainActivity.class));
                     }
                 }, 2000);
 
 
             }
-                   }
-
-
+        }
     }
 
 
-
-
+    /**
+     * Aktiviere und inaktiviere Nicht Stören Modus
+     * @param interruptionFilter
+     */
     protected void changeInterruptionFiler(int interruptionFilter) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // If api level minimum 23
             /*
@@ -279,44 +258,42 @@ public class LearningTimerActivity extends AppCompatActivity {
 
     /**
      * Der benutzer kann Nicht Stören Modus aktivieren
+     *
      * @param view
      */
-    public void doNotDisturbOn(View view)
-    {
+    public void doNotDisturbOn(View view) {
         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_NONE);
         rootLayout.setBackgroundColor(Color.BLACK);
-        helper.showToast(getString(R.string.nicht_stoeren_modus_an),Helper.TOAST_MESSAGE_TYPE_SUCCESS);
+        helper.showToast(getString(R.string.nicht_stoeren_modus_an), Helper.TOAST_MESSAGE_TYPE_SUCCESS);
 
     }
 
     /**
      * Der benutzer kann Nicht Stören Modus deaktivieren
+     *
      * @param view
      */
-    public void doNotDisturbOff (View view)
-    {
+    public void doNotDisturbOff(View view) {
         changeInterruptionFiler(NotificationManager.INTERRUPTION_FILTER_ALL);
         rootLayout.setBackgroundColor(Color.WHITE);
-        //tvTimer.setTextColor(Color.BLACK);
         helper.showToast(getString(R.string.nicht_stoeren_modus_aus), Helper.TOAST_MESSAGE_TYPE_ERROR);
     }
 
 
     /**
      * Der Benutzer navigiert sich zu View All Notes Activity, da kann er besthende Notizen verwalten und neue Notizen verfassen.
+     *
      * @param view
      */
 
-    public void goToNotes (View view)
-    {
-        Intent intent =new Intent(LearningTimerActivity.this, ViewAllNotesActivity.class);
+    public void goToNotes(View view) {
+        Intent intent = new Intent(LearningTimerActivity.this, ViewAllNotesActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        timerHandler.removeCallbacks(timerRunnable);
     }
 
 }
